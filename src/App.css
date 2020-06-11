@@ -1,38 +1,66 @@
-.App {
-  text-align: center;
+.Table-container {
+    display: flex;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Flex-table {
+    margin: auto;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 75%;
+    max-width: 100%;
+    text-align: center;
+}
+.Flex-table th, .Flex-table td {
+    padding: 0.8em 1.6em;
+    font-size: 13px;
+    border: 1px solid var(--mainColor);
+    vertical-align: top;
+}
+.Flex-table th {
+    color: var(--firstBackgroundColor);
+    background: var(--mainColor);
+    border: 1px solid var(--secondColor);
+}
+.Flex-table tr:nth-child(even) {
+    background: var(--secondBackgroundColor);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Flex-table td span {
+    background: var(--mainColor);
+    color: var(--firstBackgroundColor);
+    display: none;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 0.4em 0.8em;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+@media(max-width: 500px) {
 
-.App-link {
-  color: #61dafb;
-}
+    .Flex-table {
+        width: 100%;
+    }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    .Flex-table thead {
+        display: none;
+    }
+
+    .Flex-table tr {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 2em;
+    }
+    .Flex-table td {
+        padding-top: 2.5em;
+        text-align: left;
+        position: relative;
+        width: 100%;
+    }
+    .Flex-table td span {
+        display: block;
+    }
 }
