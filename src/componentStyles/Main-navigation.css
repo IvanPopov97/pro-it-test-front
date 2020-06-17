@@ -1,0 +1,55 @@
+.Main-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 3em 0;
+}
+
+ul.Breadcrumb {
+    margin: 0;
+    padding: 0 1em;
+    list-style: none;
+}
+
+ul.Breadcrumb li {
+    display: inline;
+}
+
+ul.Breadcrumb li+li:before {
+    padding: 0.5em;
+    color: black;
+    content: "|\00a0";
+}
+
+ul.Breadcrumb li a {
+    text-decoration: none;
+    color: black;
+}
+
+ul.Breadcrumb li a.active {
+    color: var(--secondColor) !important;
+    font-weight: bold;
+}
+
+ul.Breadcrumb li a:hover {
+    color: var(--mainColor);
+    text-decoration: underline;
+}
+
+.Create-button {
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none;
+    font-family: Verdana, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 2px solid var(--secondColor);
+}
+
+.Create-button:hover {
+    background-color: var(--secondColor);
+    color: white;
+}

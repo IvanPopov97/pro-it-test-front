@@ -5,10 +5,10 @@ import Content from './Content'
 function App() {
 
   return (
-      <div className='Page'>
+      <React.Fragment>
           <MainNavigation/>
           <Content/>
-      </div>
+      </React.Fragment>
   )
 }
 

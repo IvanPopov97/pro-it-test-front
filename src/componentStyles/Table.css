@@ -1,0 +1,62 @@
+.Flex-table {
+    margin: auto;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 75%;
+    max-width: 100%;
+    text-align: center;
+}
+.Flex-table th, .Flex-table td {
+    padding: 0.8em 1.6em;
+    font-size: 13px;
+    border: 1px solid var(--mainColor);
+    vertical-align: top;
+}
+.Flex-table th {
+    color: var(--firstBackgroundColor);
+    background: var(--mainColor);
+    border: 1px solid var(--secondColor);
+}
+
+.Flex-table tr:nth-child(even) {
+    background: var(--secondBackgroundColor);
+}
+
+.Flex-table td span {
+    background: var(--mainColor);
+    color: var(--firstBackgroundColor);
+    display: none;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 0.4em 0.8em;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@media(max-width: 500px) {
+
+    .Flex-table {
+        width: 100%;
+    }
+
+    .Flex-table thead {
+        display: none;
+    }
+    .Flex-table tr {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .Flex-table td {
+        padding-top: 2.5em;
+        text-align: left;
+        position: relative;
+        width: 100%;
+    }
+    .Flex-table td span {
+        display: block;
+    }
+}
