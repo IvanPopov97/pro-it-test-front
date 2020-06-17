@@ -1,4 +1,4 @@
-import {UPDATE_ITEM_COUNT, UPDATE_PAGE_NUMBER} from "./types";
+import {LOADING_STARTED, UPDATE_ITEM_COUNT, UPDATE_PAGE_NUMBER} from "./types";
 
 const linkCount = 9
 
@@ -33,6 +33,8 @@ const getLinks = (pageNumber, linkCount, pageCount) => {
 const paginationReducer = (state = initialState, action) => {
     let pageNumber;
     switch (action.type) {
+        case LOADING_STARTED:
+            return {...state, first: true, last: true, itemsCountUpdated: false}
         case UPDATE_ITEM_COUNT:
             const pageCount = getPageCount(action.payload, state.pageSize)
             pageNumber = Math.min(pageCount, state.pageNumber)

@@ -21,7 +21,6 @@ ul.Pagination-items li a {
     margin: 0.2em -1px 0 0;
     border: 1px solid var(--secondColor);
     font-size: 14px;
-    outline: none;
 }
 
 ul.Pagination-items li:first-child a {

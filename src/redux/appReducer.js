@@ -9,7 +9,7 @@ const initialState = {
             id: 0,
             name: 'Список сотрудников',
             component: EmployeeList,
-            link: '/'
+            link: '/employeeList'
         },
         {
             id: 1,

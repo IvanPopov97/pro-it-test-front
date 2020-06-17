@@ -1,9 +1,15 @@
 import React from "react";
 import '../componentStyles/Pagination.css'
 import PaginationItem from "./PaginationItem";
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
 
-const Pagination = ({path, links, pageNumber, first, last}) => {
+const Pagination = ({path}) => {
+
+    const links = useSelector(state => state.pagination.links)
+    const pageNumber = useSelector(state => state.pagination.pageNumber)
+    const first = useSelector(state => state.pagination.first)
+    const last = useSelector(state => state.pagination.last)
+
     return (
         <nav className="Pagination">
             <ul className="Pagination-items">
@@ -29,12 +35,4 @@ const Pagination = ({path, links, pageNumber, first, last}) => {
     )
 }
 
-
-const mapStateToProps = state => ({
-    links: state.pagination.links,
-    pageNumber: state.pagination.pageNumber,
-    first: state.pagination.first,
-    last: state.pagination.last
-})
-
-export default connect(mapStateToProps)(Pagination);
+export default Pagination;
