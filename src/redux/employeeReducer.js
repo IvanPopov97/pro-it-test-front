@@ -7,7 +7,7 @@ const initialState = {
 const EmployeeReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_EMPLOYEES:
-            return {...state, employees: action.payload}
+            return {...state, employees: action.payload.content}
         default: return state
     }
 }

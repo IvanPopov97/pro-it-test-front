@@ -10,10 +10,11 @@ const Table = ({columnNames, objects, mapObjectToValues}) => {
                 <TableHead columnNames={columnNames}/>
                 <tbody>
                 {
-                    objects.map((object, i) => <TableRow
-                        key = {i}
-                        columnNames={columnNames}
-                        values={mapObjectToValues(object)}/>
+                    objects.map((object, i) => (
+                        <TableRow key = {i}
+                                  columnNames={columnNames}
+                                  values={mapObjectToValues(object)}/>
+                        )
                     )
                 }
                 </tbody>

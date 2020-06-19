@@ -1,33 +1,14 @@
-import React, {useEffect} from "react";
-import Pagination from "./Pagination";
-import {Route, Switch} from "react-router";
-import {useDispatch} from "react-redux";
+import React from "react";
 import {fetchCompanies, updateCompanyCount} from "../redux/actions";
 import CompanyTable from "./CompanyTable";
-import PageNumberValidator from "./PageNumberValidator";
-
-const componentWithAction = (Component, action) => (
-    () => <Component action={action}/>
-)
+import List from "./List";
 
 const CompanyList = ({path}) => {
 
-    const dispatch = useDispatch()
-    const effect = () => {dispatch(updateCompanyCount())}
-    useEffect(effect, [Pagination])
-
-    const render = componentWithAction(PageNumberValidator, fetchCompanies)
-
-    return (
-        <React.Fragment>
-            <Switch>
-                <Route exact path={path} render={render}/>
-                <Route path={path + '/:pageNumber'} render={render}/>
-            </Switch>
-            <CompanyTable/>
-            <Pagination path={path}/>
-        </React.Fragment>
-    )
+    return <List path={path}
+                 actionBeforeRender={updateCompanyCount}
+                 actionAfterValidation={fetchCompanies}
+                 TableComponent={CompanyTable}/>
 }
 
-export default React.memo(CompanyList, () => true);
+export default CompanyList
