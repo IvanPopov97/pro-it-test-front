@@ -9,6 +9,10 @@ const Pagination = ({path}) => {
     const pageNumber = useSelector(state => state.pagination.pageNumber)
     const first = useSelector(state => state.pagination.first)
     const last = useSelector(state => state.pagination.last)
+    const isHidden = useSelector(state => state.pagination.isHidden)
+
+    if (isHidden)
+        return null
 
     return (
         <nav className="Pagination">

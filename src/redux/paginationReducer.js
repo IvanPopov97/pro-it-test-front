@@ -1,10 +1,10 @@
-import {LOADING_STARTED, UPDATE_ITEM_COUNT, UPDATE_PAGE_NUMBER} from "./types";
+import {HIDE_PAGINATION, UPDATE_ITEM_COUNT, UPDATE_PAGE_NUMBER} from "./types";
 
 const linkCount = 9
 
 const initialState = {
     itemsCount: 0,
-    itemsCountUpdated: false,
+    isHidden: true,
     pageCount: 0,
     pageSize: 5,
     pageNumber: 1,
@@ -33,14 +33,14 @@ const getLinks = (pageNumber, linkCount, pageCount) => {
 const paginationReducer = (state = initialState, action) => {
     let pageNumber;
     switch (action.type) {
-        case LOADING_STARTED:
-            return {...state, first: true, last: true, itemsCountUpdated: false}
+        case HIDE_PAGINATION:
+            return {...state, isHidden: true}
         case UPDATE_ITEM_COUNT:
             const pageCount = getPageCount(action.payload, state.pageSize)
             pageNumber = Math.min(pageCount, state.pageNumber)
             return {...state,
                 itemsCount: action.payload,
-                itemsCountUpdated: true,
+                isHidden: false,
                 pageCount: pageCount,
                 pageNumber: pageNumber,
                 first: pageNumber === 1,
@@ -52,13 +52,13 @@ const paginationReducer = (state = initialState, action) => {
                 )
             };
         case UPDATE_PAGE_NUMBER:
-            pageNumber = state.itemsCountUpdated
-                ? Math.min(state.pageCount, action.payload)
-                : action.payload
+            pageNumber = state.isHidden
+                ? action.payload
+                : Math.min(state.pageCount, action.payload)
             return {...state,
                 pageNumber: pageNumber,
-                first: pageNumber === 1 || !state.itemsCountUpdated,
-                last: pageNumber === state.pageCount || !state.itemsCountUpdated,
+                first: pageNumber === 1,
+                last: pageNumber === state.pageCount,
                 links: getLinks(
                     pageNumber,
                     linkCount,

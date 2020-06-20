@@ -8,7 +8,7 @@ const List = ({path, actionBeforeRender, actionAfterValidation, TableComponent})
 
     const dispatch = useDispatch()
     const effect = () => {dispatch(actionBeforeRender())}
-    useEffect(effect, [Pagination])
+    useEffect(effect)
 
     const render = () => <PageNumberValidator action={actionAfterValidation}/>
 

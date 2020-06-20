@@ -1,4 +1,10 @@
-import {LOADING_STARTED, UPDATE_COMPANIES, UPDATE_EMPLOYEES, UPDATE_ITEM_COUNT, UPDATE_PAGE_NUMBER} from "./types";
+import {
+    HIDE_PAGINATION, SWITCH_COMPANIES_NODE_STATE, UPDATE_CHILD_COMPANIES,
+    UPDATE_COMPANIES,
+    UPDATE_EMPLOYEES,
+    UPDATE_ITEM_COUNT,
+    UPDATE_PAGE_NUMBER, UPDATE_ROOT_COMPANIES
+} from "./types";
 import {SERVER} from "../config";
 
 const headers = new Headers({
@@ -18,6 +24,7 @@ const calcOffset = (pageNumber, pageSize) => (pageNumber - 1) * pageSize
 const fetchAndDispatch = (actionTypeAfterFetch,
                           url,
                           params = null,
+                          payload = null,
                           actionTypeBeforeFetch = null) => {
     return async dispatch => {
         if (actionTypeBeforeFetch)
@@ -25,14 +32,26 @@ const fetchAndDispatch = (actionTypeAfterFetch,
         const get = createGetRequest(url, params)
         const json = await fetch(get, {headers})
             .then(response => response.json())
-        dispatch({type: actionTypeAfterFetch, payload: json})
+        const payloadWithData = payload ? {...payload, content: json} : json
+        dispatch({type: actionTypeAfterFetch, payload: payloadWithData})
     }
 }
 
-// export const fetchCompanyRootElements = () => {
-//     const url = createUrl('/company/tree')
-//     return fetchAndDispatch('/company/tree', {type: })
-// }
+export const fetchRootCompanies = () => {
+    return fetchAndDispatch(
+        UPDATE_ROOT_COMPANIES,
+        '/company/tree'
+    )
+}
+
+export const fetchChildCompanies = (parentRecordId, parentId) => {
+    return fetchAndDispatch(
+        UPDATE_CHILD_COMPANIES,
+        '/company/tree',
+        {'parentId': parentId},
+        {id: parentRecordId}
+    )
+}
 
 export const fetchEmployees = (pageNumber, pageSize) => {
     const offset = calcOffset(pageNumber, pageSize)
@@ -61,7 +80,8 @@ export const updateEmployeeCount = () => {
         UPDATE_ITEM_COUNT,
         '/employee/count',
         null,
-        LOADING_STARTED
+        null,
+        HIDE_PAGINATION
     )
 }
 
@@ -70,8 +90,16 @@ export const updateCompanyCount = () => {
         UPDATE_ITEM_COUNT,
         '/company/count',
         null,
-        LOADING_STARTED
+        null,
+        HIDE_PAGINATION
     )
+}
+
+export const switchCompaniesNodeState = (nodeId) => {
+    return {
+        type: SWITCH_COMPANIES_NODE_STATE,
+        payload: nodeId
+    }
 }
 
 export const updatePageNumber = (pageNumber) => {

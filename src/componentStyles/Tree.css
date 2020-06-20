@@ -1,0 +1,44 @@
+div.Tree-container {
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+ul.Tree {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+ul.Tree, ul.Tree *+*  {
+    list-style-type: none;
+}
+
+span.Closed-state {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+}
+
+span.Closed-state::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+span.Opened-state::before {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */
+    transform: rotate(90deg);
+}
+
+.Child-nodes {
+    display: none;
+}
+
+.Child-nodes.Active {
+    display: block;
+}
