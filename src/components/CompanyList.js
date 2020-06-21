@@ -3,10 +3,9 @@ import CompanyTable from "./CompanyTable";
 import List from "./List";
 import {fetchCompanies, updateCompanyCount} from "../redux/actions/companyActions";
 
-const CompanyList = ({path}) => {
+const CompanyList = () => {
 
-    return <List path={path} a
-                 actionBeforeRender={updateCompanyCount}
+    return <List actionBeforeRender={updateCompanyCount}
                  actionAfterPageNumberValidation={fetchCompanies}
                  TableComponent={CompanyTable}/>
 }

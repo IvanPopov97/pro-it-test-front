@@ -1,4 +1,4 @@
-//export const SET_CURRENT_PATH = 'SET_CURRENT_PATH'
+export const SET_CURRENT_PATH = 'SET_CURRENT_PATH'
 
 // header reducer Actions
 export const HIDE_HEADER_CREATE_BUTTON = 'HIDE_HEADER_CREATE_BUTTON'

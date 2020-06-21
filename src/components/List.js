@@ -1,11 +1,11 @@
 import React, {Fragment, useEffect} from "react";
 import Pagination from "./Pagination";
 import {Route, Switch} from "react-router";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import PageNumberValidator from "./PageNumberValidator";
 import {showHeaderCreateButton} from "../redux/actions/headerActions";
 
-const List = ({path, actionBeforeRender, actionAfterPageNumberValidation, TableComponent}) => {
+const List = ({actionBeforeRender, actionAfterPageNumberValidation, TableComponent}) => {
 
     const dispatch = useDispatch()
     useEffect(() => { dispatch(actionBeforeRender()) },
@@ -15,6 +15,8 @@ const List = ({path, actionBeforeRender, actionAfterPageNumberValidation, TableC
     useEffect(() => { dispatch(showHeaderCreateButton()) },
         [dispatch]
     )
+
+    const path = useSelector(state => state.app.currentPath)
 
     const render = () => <PageNumberValidator action={actionAfterPageNumberValidation}/>
 
@@ -29,4 +31,4 @@ const List = ({path, actionBeforeRender, actionAfterPageNumberValidation, TableC
     )
 }
 
-export default React.memo(List, () => true);
+export default React.memo(List, () => true)

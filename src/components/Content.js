@@ -1,6 +1,8 @@
 import React from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {setCurrentPath} from "../redux/actions/appActions";
+import ActionDispatcher from "./ActionDispatcher";
 
 const Content = ({items, mainItemId}) => {
     const mainLink = items.find(item => item.id === mainItemId).link
@@ -9,11 +11,13 @@ const Content = ({items, mainItemId}) => {
             {
                 items.map(
                     item => {
-                        const Component = item.component
+                        const action = () => setCurrentPath(item.link)
+                        const render = () => <ActionDispatcher action={action}
+                                                               Component={item.component}/>
                         return (
                                 <Route key={item.id}
                                        path={item.link}
-                                       render={() => <Component path={item.link}/>}/>
+                                       render={render}/>
                             )
                     }
                 )

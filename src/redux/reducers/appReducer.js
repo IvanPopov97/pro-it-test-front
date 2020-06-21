@@ -2,6 +2,7 @@ import EmployeeList from '../../components/EmployeeList'
 import EmployeeTree from '../../components/EmployeeTree'
 import CompanyList from '../../components/CompanyList'
 import CompanyTree from '../../components/CompanyTree'
+import {SET_CURRENT_PATH} from "../types";
 
 const initialState = {
     items: [
@@ -9,32 +10,39 @@ const initialState = {
             id: 0,
             name: 'Список сотрудников',
             component: EmployeeList,
-            link: '/employeeList'
+            link: '/employeeList',
+            showCreateButton: true
         },
         {
             id: 1,
             name: 'Список организаций',
             component: CompanyList,
-            link: '/companyList'
+            link: '/companyList',
+            showCreateButton: true
         },
         {
             id: 2,
             name: 'Дерево сотрудников',
             component: EmployeeTree,
-            link: '/employeeTree'
+            link: '/employeeTree',
+            showCreateButton: false
         },
         {
             id: 3,
             name: 'Дерево компаний',
             component: CompanyTree,
-            link: '/companyTree'
+            link: '/companyTree',
+            showCreateButton: false
         }
     ],
-    mainItemId: 0
+    mainItemId: 0,
+    currentPath: '/'
 }
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_CURRENT_PATH:
+            return {...state, currentPath: action.payload}
         default: return state;
     }
 }

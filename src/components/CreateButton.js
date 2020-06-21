@@ -1,9 +1,15 @@
 import React from "react";
+import {useSelector} from "react-redux";
 
 const CreateButton = () => {
+    const path = useSelector(state => state.app.currentPath)
+
+    const clickHandler = () => {
+        console.log(`${path}/add`)
+    }
 
     return (
-        <button className='Create-button'>Создать</button>
+        <button onClick={clickHandler} className='Create-button'>Создать</button>
     )
 }
 

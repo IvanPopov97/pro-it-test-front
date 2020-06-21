@@ -3,7 +3,7 @@ import '../componentStyles/Pagination.css'
 import PaginationItem from "./PaginationItem";
 import {useSelector} from "react-redux";
 
-const Pagination = ({path}) => {
+const Pagination = () => {
 
     const links = useSelector(state => state.pagination.links)
     const pageNumber = useSelector(state => state.pagination.pageNumber)
@@ -20,19 +20,19 @@ const Pagination = ({path}) => {
                 {
                     first
                         ? null
-                        : <PaginationItem path={path} link={pageNumber - 1} text='🡐'/>
+                        : <PaginationItem link={pageNumber - 1} text='🡐'/>
                 }
                 {
                     first && last
                         ? null
                         : links.map(
-                        link => <PaginationItem key={link} path={path} link={link} text={link}/>
+                        link => <PaginationItem key={link} link={link} text={link}/>
                         )
                 }
                 {
                     last
                         ? null
-                        : <PaginationItem path={path} link={pageNumber + 1} text='🡒'/>
+                        : <PaginationItem link={pageNumber + 1} text='🡒'/>
                 }
             </ul>
         </nav>
