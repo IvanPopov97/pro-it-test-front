@@ -15,7 +15,7 @@ const Pagination = ({path}) => {
         return null
 
     return (
-        <nav className="Pagination">
+        <nav className="Pagination Center-alignment">
             <ul className="Pagination-items">
                 {
                     first

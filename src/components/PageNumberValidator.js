@@ -5,12 +5,11 @@ import {updatePageNumber} from "../redux/actions";
 
 const isNaturalNumber = new RegExp('^[1-9][0-9]*$')
 
-const extractPageNumber = match =>
-    match.params.pageNumber === undefined ? '1' : match.params.pageNumber
+const extractPageNumber = params =>
+    params.pageNumber === undefined ? '1' : params.pageNumber
 
-const PageNumberValidator = ({match, action}) => {
-
-    const pageNumber = extractPageNumber(match)
+const PageNumberValidator = ({match: {params}, action}) => {
+    const pageNumber = extractPageNumber(params)
     const pageSize = useSelector(state => state.pagination.pageSize)
 
     const dispatch = useDispatch()

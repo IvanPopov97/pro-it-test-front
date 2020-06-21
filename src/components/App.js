@@ -1,14 +1,14 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import MainNavigation from './MainNavigation'
 import Content from './Content'
 
 function App() {
 
   return (
-      <React.Fragment>
+      <Fragment>
           <MainNavigation/>
           <Content/>
-      </React.Fragment>
+      </Fragment>
   )
 }
 

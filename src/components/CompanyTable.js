@@ -5,12 +5,12 @@ import Table from "./Table";
 
 const columnNames = ['ID', 'Название компании', 'Количество сотрудников', 'Головная компания']
 
-const mapCompanyToValueArray = (company) => [
-    company.id,
-    company.name,
-    company.employeeCount,
-    company.headCompany ? company.headCompany.name : null
-]
+const mapCompanyToValueArray = (company) => (
+    Object.values({
+        ...company,
+        headCompany: company.headCompany ? company.headCompany.name : null
+    })
+)
 
 const CompanyTable = () => {
     const companies = useSelector(state => state.company.companies)

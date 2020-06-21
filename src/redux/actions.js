@@ -45,6 +45,7 @@ export const fetchRootCompanies = () => {
 }
 
 export const fetchChildCompanies = (parentRecordId, parentId) => {
+    console.log('!')
     return fetchAndDispatch(
         UPDATE_CHILD_COMPANIES,
         '/company/tree',

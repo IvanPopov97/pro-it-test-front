@@ -24,7 +24,7 @@ const CompanyReducer = (state = initialState, action) => {
         case UPDATE_CHILD_COMPANIES:
             return updateChildCompanies(state, action)
         case UPDATE_COMPANIES:
-            return {...state, companies: action.payload.content}
+            return {...state, rootCompaniesId: [], companies: action.payload.content}
         default: return state
     }
 }

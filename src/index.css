@@ -17,3 +17,8 @@ body {
 a {
   outline: none;
 }
+
+.Center-alignment {
+  display: flex;
+  justify-content: center;
+}

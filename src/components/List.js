@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {Fragment, useEffect} from "react";
 import Pagination from "./Pagination";
 import {Route, Switch} from "react-router";
 import {useDispatch} from "react-redux";
@@ -13,14 +13,14 @@ const List = ({path, actionBeforeRender, actionAfterValidation, TableComponent})
     const render = () => <PageNumberValidator action={actionAfterValidation}/>
 
     return (
-        <React.Fragment>
+        <Fragment>
             <Switch>
-                <Route exact path={path} render={render}/>
-                <Route path={path + '/:pageNumber'} render={render}/>
+                {/*<Route exact path={path} render={render}/>*/}
+                <Route path={`${path}/:pageNumber?`} render={render}/>
             </Switch>
             <TableComponent/>
             <Pagination path={path}/>
-        </React.Fragment>
+        </Fragment>
     )
 }
 

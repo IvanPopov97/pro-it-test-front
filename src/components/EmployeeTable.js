@@ -5,12 +5,18 @@ import Table from "./Table";
 
 const columnNames = ['ID', 'Имя сотрудника', 'Организация', 'Руководитель']
 
-const mapEmployeeToValueArray = (employee) => [
-    employee.id,
-    employee.name,
-    employee.company ? employee.company.name : null,
-    employee.boss ? employee.boss.name : null
-]
+// const mapEmployeeToValueArray = (employee) => [
+//     employee.id,
+//     employee.name,
+//     employee.company ? employee.company.name : null,
+//     employee.boss ? employee.boss.name : null
+// ]
+
+const mapEmployeeToValueArray = (employee) => Object.values({
+    ...employee,
+    company: employee.company ? employee.company.name : null,
+    boss: employee.boss ? employee.boss.name : null
+})
 
 const EmployeeTable = () => {
     const companies = useSelector(state => state.employee.employees)
