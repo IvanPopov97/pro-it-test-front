@@ -15,9 +15,10 @@ const CompanyTreeNode = ({recordId, company: {id, name, isOpened, hasChild, chil
     
     if (!hasChild)
         return <li>{name}</li>
-    
-    const spanClassName = isOpened ? 'Node Opened-state' : 'Node'
-    const ulClassName = isOpened ? 'Child-nodes Active' : 'Child-nodes'
+
+    const [spanClassName, ulClassName] = isOpened
+        ? ['Node Opened-state', 'Child-nodes Active']
+        : ['Node', 'Child-nodes']
 
     return (
         <li>

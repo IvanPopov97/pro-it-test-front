@@ -15,7 +15,6 @@ const List = ({path, actionBeforeRender, actionAfterValidation, TableComponent})
     return (
         <Fragment>
             <Switch>
-                {/*<Route exact path={path} render={render}/>*/}
                 <Route path={`${path}/:pageNumber?`} render={render}/>
             </Switch>
             <TableComponent/>

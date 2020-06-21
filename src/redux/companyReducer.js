@@ -35,34 +35,41 @@ const range = (a, b) => Array(b - a)
 
 const switchCompaniesNodeState = (state, action) => {
     const nodeId = action.payload
-    const companiesCopy = [...state.companies]
-    companiesCopy[nodeId] = {
+    const updatedNode = {
         ...state.companies[nodeId],
         isOpened: !state.companies[nodeId].isOpened
     }
-    return {...state, companies: companiesCopy}
+    const updatedCompanies = Object.assign(
+        [...state.companies],
+        {[nodeId] : updatedNode}
+        )
+    return {...state, companies: updatedCompanies}
 }
 
 const updateChildCompanies = (state, action) => {
-    const childCompanies = action.payload.content
-    const updatedCompanies = state.companies.concat(
-        childCompanies.map(
-            childCompany => ({
-                ...childCompany,
-                isOpened: false,
-                childCompaniesId: []
-            })
-        )
+    const childCompanies = action.payload.content.map(
+        childCompany => ({
+            ...childCompany,
+            isOpened: false,
+            childCompaniesId: []
+        })
     )
-    const parentId = action.payload.id
+
     const childCompaniesId = range(
         state.companies.length,
         state.companies.length + childCompanies.length
     )
-    updatedCompanies[parentId] = {
+
+    const parentId = action.payload.id
+    const updatedParent = {
         ...state.companies[parentId],
         childCompaniesId: childCompaniesId
     }
+
+    const updatedCompanies = Object.assign(
+        state.companies.concat(childCompanies),
+        {[parentId]: updatedParent}
+    )
     return {
         ...state,
         companies: updatedCompanies
