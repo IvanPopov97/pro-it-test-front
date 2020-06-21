@@ -1,24 +1,30 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import CompanyTreeNode from "./CompanyTreeNode";
-import {fetchRootCompanies} from "../redux/actions";
 import '../componentStyles/Tree.css'
+import {fetchRootCompanies, MODEL_NAME} from "../redux/actions/companyActions";
 
 const CompanyTree = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchRootCompanies())
     }, [dispatch])
-    const rootCompaniesId = useSelector(state => state.company.rootCompaniesId)
-    const companies = useSelector(state => state.company.companies)
+
+    const tree = useSelector(state => state.tree[MODEL_NAME])
+
+    if (!tree)
+        return null
+
     return (
         <div className='Center-alignment'>
             <ul className='Tree'>
                 {
-                    rootCompaniesId.map(
+                    tree.rootItemsId.map(
                         id => {
                             return (
-                                <CompanyTreeNode key={id} recordId={id} company={companies[id]}/>
+                                <CompanyTreeNode key={id}
+                                                 recordId={id}
+                                                 company={tree.items[id]}/>
                             )
                         }
                     )

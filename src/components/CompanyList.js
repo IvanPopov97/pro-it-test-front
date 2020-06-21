@@ -1,13 +1,13 @@
 import React from "react";
-import {fetchCompanies, updateCompanyCount} from "../redux/actions";
 import CompanyTable from "./CompanyTable";
 import List from "./List";
+import {fetchCompanies, updateCompanyCount} from "../redux/actions/companyActions";
 
 const CompanyList = ({path}) => {
 
-    return <List path={path}
+    return <List path={path} a
                  actionBeforeRender={updateCompanyCount}
-                 actionAfterValidation={fetchCompanies}
+                 actionAfterPageNumberValidation={fetchCompanies}
                  TableComponent={CompanyTable}/>
 }
 

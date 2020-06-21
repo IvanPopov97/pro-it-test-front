@@ -1,12 +1,12 @@
 import {combineReducers} from "redux";
 import appReducer from "./appReducer";
 import paginationReducer from "./paginationReducer";
-import companyReducer from "./companyReducer";
-import employeeReducer from "./employeeReducer";
+import listReducer from "./listReducer";
+import treeReducer from "./treeReducer";
 
 export const rootReducer = combineReducers({
     app: appReducer,
     pagination: paginationReducer,
-    company: companyReducer,
-    employee: employeeReducer
+    list: listReducer,
+    tree: treeReducer
 })

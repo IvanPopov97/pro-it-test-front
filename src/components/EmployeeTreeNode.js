@@ -1,18 +1,19 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchChildCompanies, MODEL_NAME, switchCompaniesNodeState} from "../redux/actions/companyActions";
+import {MODEL_NAME} from "../redux/actions/employeeActions";
+import {fetchChildEmployees, switchEmployeesNodeState} from "../redux/actions/employeeActions";
 
-const CompanyTreeNode = ({recordId, company: {id, name, isOpened, hasChild, childItemsId}}) => {
+const EmployeeTreeNode = ({recordId, employee: {id, name, isOpened, hasChild, childItemsId}}) => {
     const dispatch = useDispatch()
 
     const clickHandler = () => {
         if (!isOpened)
-            dispatch(fetchChildCompanies(recordId, id))
-        dispatch(switchCompaniesNodeState(recordId))
+            dispatch(fetchChildEmployees(recordId, id))
+        dispatch(switchEmployeesNodeState(recordId))
     }
 
-    const companies = useSelector(state => state.tree[MODEL_NAME].items)
-    
+    const employees = useSelector(state => state.tree[MODEL_NAME].items)
+
     if (!hasChild)
         return <li>{name}</li>
 
@@ -26,7 +27,7 @@ const CompanyTreeNode = ({recordId, company: {id, name, isOpened, hasChild, chil
             <ul className={ulClassName}>
                 {
                     childItemsId.map(
-                        id => <CompanyTreeNode key={id} recordId={id} company={companies[id]}/>
+                        id => <EmployeeTreeNode key={id} recordId={id} company={employees[id]}/>
                     )
                 }
             </ul>
@@ -34,4 +35,4 @@ const CompanyTreeNode = ({recordId, company: {id, name, isOpened, hasChild, chil
     )
 }
 
-export default CompanyTreeNode
+export default EmployeeTreeNode

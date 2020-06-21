@@ -2,6 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import '../componentStyles/Table.css'
 import Table from "./Table";
+import {MODEL_NAME} from "../redux/actions/employeeActions";
 
 const columnNames = ['ID', 'Имя сотрудника', 'Организация', 'Руководитель']
 
@@ -12,13 +13,13 @@ const mapEmployeeToValueArray = (employee) => Object.values({
 })
 
 const EmployeeTable = () => {
-    const companies = useSelector(state => state.employee.employees)
-    if (!companies.length)
+    const employees = useSelector(state => state.list[MODEL_NAME])
+    if (!employees)
         return <div>Больше сотрудников нет</div>
     return (
         <Table
             columnNames={columnNames}
-            objects={companies}
+            objects={employees.items}
             mapObjectToValues={mapEmployeeToValueArray}/>
     )
 }

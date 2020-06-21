@@ -1,7 +1,7 @@
-import EmployeeList from '../components/EmployeeList'
-import EmployeeTree from '../components/EmployeeTree'
-import CompanyList from '../components/CompanyList'
-import CompanyTree from '../components/CompanyTree'
+import EmployeeList from '../../components/EmployeeList'
+import EmployeeTree from '../../components/EmployeeTree'
+import CompanyList from '../../components/CompanyList'
+import CompanyTree from '../../components/CompanyTree'
 
 const initialState = {
     items: [

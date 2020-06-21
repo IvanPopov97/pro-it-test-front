@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {withRouter} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {updatePageNumber} from "../redux/actions";
+import {updatePageNumber} from "../redux/actions/paginationActions";
 
 const isNaturalNumber = new RegExp('^[1-9][0-9]*$')
 
@@ -15,6 +15,7 @@ const PageNumberValidator = ({match: {params}, action}) => {
     const dispatch = useDispatch()
     const effect = () => {
         if (isNaturalNumber.test(pageNumber)) {
+            //console.log(pageNumber)
             dispatch(updatePageNumber(pageNumber))
             dispatch(action(pageNumber, pageSize))
         }
