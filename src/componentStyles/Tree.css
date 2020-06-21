@@ -26,7 +26,7 @@ span.Node::before {
     content: "\25B6";
     color: black;
     display: inline-block;
-    margin-right: 6px;
+    margin-right: 0.5em;
 }
 
 span.Opened-state::before {

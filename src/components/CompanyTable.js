@@ -6,7 +6,7 @@ import {MODEL_NAME} from "../redux/actions/companyActions";
 
 const columnNames = ['ID', 'Название компании', 'Количество сотрудников', 'Головная компания']
 
-const mapCompanyToValueArray = (company) => (
+const mapCompanyToValueArray = company => (
     Object.values({
         ...company,
         headCompany: company.headCompany ? company.headCompany.name : null

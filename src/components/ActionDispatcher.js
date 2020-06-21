@@ -4,7 +4,7 @@ import React, {useEffect} from "react";
 const ActionDispatcher = ({ action, Component }) => {
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch( action() )
+        dispatch(action())
     }, [dispatch, action])
     return <Component/>
 }

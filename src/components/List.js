@@ -3,22 +3,26 @@ import Pagination from "./Pagination";
 import {Route, Switch} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import PageNumberValidator from "./PageNumberValidator";
-import {showHeaderCreateButton} from "../redux/actions/headerActions";
+import {setPageNumber} from "../redux/actions/paginationActions";
 
 const List = ({actionBeforeRender, actionAfterPageNumberValidation, TableComponent}) => {
 
     const dispatch = useDispatch()
-    useEffect(() => { dispatch(actionBeforeRender()) },
-        [dispatch, actionBeforeRender]
+    useEffect(() => {
+        dispatch(actionBeforeRender())
+        }, [dispatch, actionBeforeRender]
     )
 
-    useEffect(() => { dispatch(showHeaderCreateButton()) },
-        [dispatch]
-    )
+    const pageSize = useSelector(state => state.pagination.pageSize)
+
+    const actions = [
+        setPageNumber,
+        pageNumber => actionAfterPageNumberValidation(pageNumber, pageSize)
+    ]
 
     const path = useSelector(state => state.app.currentPath)
 
-    const render = () => <PageNumberValidator action={actionAfterPageNumberValidation}/>
+    const render = () => <PageNumberValidator actions={actions}/>
 
     return (
         <Fragment>

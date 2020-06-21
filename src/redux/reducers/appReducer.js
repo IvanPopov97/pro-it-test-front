@@ -11,28 +11,32 @@ const initialState = {
             name: 'Список сотрудников',
             component: EmployeeList,
             link: '/employeeList',
-            showCreateButton: true
+            showCreateButton: true,
+            showInMainMenu: true
         },
         {
             id: 1,
             name: 'Список организаций',
             component: CompanyList,
             link: '/companyList',
-            showCreateButton: true
+            showCreateButton: true,
+            showInMainMenu: true
         },
         {
             id: 2,
             name: 'Дерево сотрудников',
             component: EmployeeTree,
             link: '/employeeTree',
-            showCreateButton: false
+            showCreateButton: false,
+            showInMainMenu: true
         },
         {
             id: 3,
             name: 'Дерево компаний',
             component: CompanyTree,
             link: '/companyTree',
-            showCreateButton: false
+            showCreateButton: false,
+            showInMainMenu: true
         }
     ],
     mainItemId: 0,

@@ -1,10 +1,12 @@
 import React from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
-import {connect} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {setCurrentPath} from "../redux/actions/appActions";
 import ActionDispatcher from "./ActionDispatcher";
 
-const Content = ({items, mainItemId}) => {
+const Content = () => {
+    const items = useSelector(state => state.app.items)
+    const mainItemId = useSelector(state => state.app.mainItemId)
     const mainLink = items.find(item => item.id === mainItemId).link
     return (
         <Switch>
@@ -12,13 +14,8 @@ const Content = ({items, mainItemId}) => {
                 items.map(
                     item => {
                         const action = () => setCurrentPath(item.link)
-                        const render = () => <ActionDispatcher action={action}
-                                                               Component={item.component}/>
-                        return (
-                                <Route key={item.id}
-                                       path={item.link}
-                                       render={render}/>
-                            )
+                        const render = () => <ActionDispatcher action={action} Component={item.component}/>
+                        return <Route key={item.id} path={item.link} render={render}/>
                     }
                 )
             }
@@ -29,9 +26,5 @@ const Content = ({items, mainItemId}) => {
     )
 }
 
-const mapStateToProps = state => ({
-    items: state.app.items,
-    mainItemId: state.app.mainItemId
-})
 
-export default connect(mapStateToProps)(Content)
+export default Content

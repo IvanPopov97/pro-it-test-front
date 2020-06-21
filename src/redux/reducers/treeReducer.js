@@ -6,7 +6,6 @@ const initialState = {}
 const treeReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_ROOT_ITEMS:
-            //console.log(action.payload.name)
             return {
                 ...state,
                 [action.payload.name]: {
