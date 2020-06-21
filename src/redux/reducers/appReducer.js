@@ -9,29 +9,25 @@ const initialState = {
             id: 0,
             name: 'Список сотрудников',
             component: EmployeeList,
-            link: '/employeeList',
-            showCreateButton: true
+            link: '/employeeList'
         },
         {
             id: 1,
             name: 'Список организаций',
             component: CompanyList,
-            link: '/companyList',
-            showCreateButton: true
+            link: '/companyList'
         },
         {
             id: 2,
             name: 'Дерево сотрудников',
             component: EmployeeTree,
-            link: '/employeeTree',
-            showCreateButton: false
+            link: '/employeeTree'
         },
         {
             id: 3,
             name: 'Дерево компаний',
             component: CompanyTree,
-            link: '/companyTree',
-            showCreateButton: false
+            link: '/companyTree'
         }
     ],
     mainItemId: 0

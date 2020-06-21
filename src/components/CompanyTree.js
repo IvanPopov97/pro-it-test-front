@@ -3,12 +3,18 @@ import {useDispatch, useSelector} from "react-redux";
 import CompanyTreeNode from "./CompanyTreeNode";
 import '../componentStyles/Tree.css'
 import {fetchRootCompanies, MODEL_NAME} from "../redux/actions/companyActions";
+import {hideHeaderCreateButton} from "../redux/actions/headerActions";
 
 const CompanyTree = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchRootCompanies())
     }, [dispatch])
+
+    useEffect(() => {
+        dispatch(hideHeaderCreateButton())
+        }, [dispatch]
+    )
 
     const tree = useSelector(state => state.tree[MODEL_NAME])
 

@@ -11,9 +11,9 @@ const Content = ({items, mainItemId}) => {
                     item => {
                         const Component = item.component
                         return (
-                            <Route key={item.id}
-                                   path={item.link}
-                                   render={() => <Component path={item.link}/>}/>
+                                <Route key={item.id}
+                                       path={item.link}
+                                       render={() => <Component path={item.link}/>}/>
                             )
                     }
                 )
