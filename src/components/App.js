@@ -1,15 +1,14 @@
 import React, {Fragment} from 'react'
-import MainNavigation from './MainNavigation'
 import Content from './Content'
+import Header from "./Header";
 
 function App() {
-
-  return (
+    return (
       <Fragment>
-          <MainNavigation/>
+          <Header/>
           <Content/>
       </Fragment>
-  )
+    )
 }
 
 export default App

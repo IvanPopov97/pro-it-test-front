@@ -1,13 +1,9 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
 import '../componentStyles/Main-navigation.css'
 import MainNavigationItem from './MainNavigationItem'
-import CreateButton from './CreateButton'
+import CreateButton from "./CreateButton";
 
-const MainNavigation = () => {
-
-    const items = useSelector(state => state.app.items)
-
+const MainNavigation = ({items, showCreateButton}) => {
     return (
         <nav className='Main-navigation'>
             <ul className='Breadcrumb'>
@@ -15,7 +11,7 @@ const MainNavigation = () => {
                     items.map(item => <MainNavigationItem key={item.id} item={item}/>)
                 }
             </ul>
-            <CreateButton/>
+            {showCreateButton ? <CreateButton/> : null}
         </nav>
     )
 }
