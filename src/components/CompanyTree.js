@@ -1,42 +1,16 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import CompanyTreeNode from "./CompanyTreeNode";
+import React from "react";
 import '../componentStyles/Tree.css'
+import Tree from "./Tree";
 import {fetchRootCompanies, MODEL_NAME} from "../redux/actions/companyActions";
-import {hideHeaderCreateButton} from "../redux/actions/headerActions";
+import CompanyTreeNode from "./CompanyTreeNode";
 
 const CompanyTree = () => {
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(fetchRootCompanies())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(hideHeaderCreateButton())
-        }, [dispatch]
-    )
-
-    const tree = useSelector(state => state.tree[MODEL_NAME])
-
-    if (!tree)
-        return null
+    const mapStateToModel = state => state.tree[MODEL_NAME]
 
     return (
-        <div className='Center-alignment'>
-            <ul className='Tree'>
-                {
-                    tree.rootItemsId.map(
-                        id => {
-                            return (
-                                <CompanyTreeNode key={id}
-                                                 recordId={id}
-                                                 company={tree.items[id]}/>
-                            )
-                        }
-                    )
-                }
-            </ul>
-        </div>
+        <Tree fetchRootItems={fetchRootCompanies}
+              treeNodeComponent={CompanyTreeNode}
+              mapStateToModel={mapStateToModel}/>
     )
 }
 
