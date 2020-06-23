@@ -1,0 +1,16 @@
+.Margin-right {
+    margin-right: 20%;
+}
+
+.input-group {
+    padding: 0.5em 30%;
+}
+
+@media(max-width: 800px) {
+    .Margin-right {
+        margin-right: 10%;
+    }
+    .input-group {
+        padding: 0.5em 5%;
+    }
+}

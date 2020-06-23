@@ -22,3 +22,19 @@ a {
   display: flex;
   justify-content: center;
 }
+
+.bg-primary {
+  background-color: var(--secondBackgroundColor) !important;
+}
+
+.text-primary {
+  color: var(--mainColor) !important;
+}
+
+.text-second {
+  color: var(--secondColor) !important;
+}
+
+.text-black {
+  color: black !important;
+}

@@ -1,11 +1,13 @@
 import {calcOffset, fetchAndDispatch} from "./index";
 import {
-    HIDE_PAGINATION, SET_CHILD_ITEMS, SET_ITEM_COUNT,
+    HIDE_PAGINATION, SET_CHILD_ITEMS, SET_FORM_ELEMENT_ITEMS, SET_ITEM_COUNT,
     SET_LIST_ITEMS,
     SET_ROOT_ITEMS, SWITCH_NODE_STATE
 } from "../types";
 
 export const MODEL_NAME = 'companies'
+
+const mainPath = '/company'
 
 export const fetchCompanies = (pageNumber, pageSize) => {
     const offset = calcOffset(pageNumber, pageSize)
@@ -13,16 +15,18 @@ export const fetchCompanies = (pageNumber, pageSize) => {
 
     return fetchAndDispatch(
         SET_LIST_ITEMS,
-        '/company/list',
+        `${mainPath}/list`,
         params,
-        {name: MODEL_NAME}
+        {name: MODEL_NAME},
+        null,
+        object => object.content
     )
 }
 
 export const updateCompanyCount = () => {
     return fetchAndDispatch(
         SET_ITEM_COUNT,
-        '/company/count',
+        `${mainPath}/count`,
         null,
         null,
         HIDE_PAGINATION
@@ -32,7 +36,7 @@ export const updateCompanyCount = () => {
 export const fetchRootCompanies = () => {
     return fetchAndDispatch(
         SET_ROOT_ITEMS,
-        '/company/tree',
+        `${mainPath}/tree`,
         null,
         {name: MODEL_NAME}
     )
@@ -41,7 +45,7 @@ export const fetchRootCompanies = () => {
 export const fetchChildCompanies = (parentRecordId, parentId) => {
     return fetchAndDispatch(
         SET_CHILD_ITEMS,
-        '/company/tree',
+        `${mainPath}/tree`,
         {'parentId': parentId},
         {id: parentRecordId, name: MODEL_NAME}
     )
@@ -55,4 +59,16 @@ export const switchCompaniesNodeState = (nodeId) => {
             name: MODEL_NAME
         }
     }
+}
+
+export const fetchCompanyNames = () => {
+
+    return fetchAndDispatch(
+        SET_FORM_ELEMENT_ITEMS,
+        `${mainPath}/names`,
+        null,
+        {formName: MODEL_NAME, formItemName: 'companies'},
+        null,
+        objects => (objects.map(object => ({id: object.id, name: object.name})))
+    )
 }

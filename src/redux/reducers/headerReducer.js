@@ -1,10 +1,10 @@
 import {HIDE_HEADER_CREATE_BUTTON, SHOW_HEADER_CREATE_BUTTON} from "../types";
 
-const initState = {
+const initialState = {
     showCreateButton: true
 }
 
-const headerReducer = (state = initState, action) => {
+const headerReducer = (state = initialState, action) => {
     switch (action.type) {
         case SHOW_HEADER_CREATE_BUTTON:
             return {...state, showCreateButton: true}

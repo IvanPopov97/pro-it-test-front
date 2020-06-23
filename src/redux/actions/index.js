@@ -15,16 +15,18 @@ export const createGetRequest = (urlString, params = null) => {
 export const calcOffset = (pageNumber, pageSize) => (pageNumber - 1) * pageSize
 
 export const fetchAndDispatch = (actionTypeAfterFetch,
-                          url,
-                          params = null,
-                          payload = null,
-                          actionTypeBeforeFetch = null) => {
+                                 url,
+                                 params = null,
+                                 payload = null,
+                                 actionTypeBeforeFetch = null,
+                                 mapFunction = null) => {
     return async dispatch => {
         if (actionTypeBeforeFetch)
             dispatch({type: actionTypeBeforeFetch})
         const get = createGetRequest(url, params)
-        const json = await fetch(get, {headers})
+        let json = await fetch(get, {headers})
             .then(response => response.json())
+        if (mapFunction) json = mapFunction(json)
         const payloadWithData = payload ? {...payload, content: json} : json
         dispatch({type: actionTypeAfterFetch, payload: payloadWithData})
     }

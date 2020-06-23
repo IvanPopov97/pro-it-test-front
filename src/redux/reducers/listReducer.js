@@ -8,7 +8,7 @@ const listReducer = (state = initialState, action) => {
             return {
                 ...state,
                 [action.payload.name]: {
-                    items: action.payload.content.content
+                    items: action.payload.content
                 }
             }
         default: return state

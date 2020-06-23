@@ -15,7 +15,9 @@ export const fetchEmployees = (pageNumber, pageSize) => {
         SET_LIST_ITEMS,
         '/employee/list',
         params,
-        {name: MODEL_NAME}
+        {name: MODEL_NAME},
+        null,
+        object => object.content
     )
 }
 
