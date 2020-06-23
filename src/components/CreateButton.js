@@ -1,11 +1,13 @@
 import React from "react";
 import {useSelector} from "react-redux";
+import {useHistory} from "react-router";
 
 const CreateButton = () => {
     const path = useSelector(state => state.app.currentPath)
+    const history = useHistory()
 
     const clickHandler = () => {
-        console.log(`${path}/add`)
+        history.push(`/add${path}`)
     }
 
     return (

@@ -3,6 +3,8 @@ import EmployeeTree from '../../components/EmployeeTree'
 import CompanyList from '../../components/CompanyList'
 import CompanyTree from '../../components/CompanyTree'
 import {SET_CURRENT_PATH} from "../types";
+import AddCompanyForm from "../../components/AddCompanyForm";
+import AddEmployeeForm from "../../components/AddEmployeeForm";
 
 const initialState = {
     items: [
@@ -37,6 +39,22 @@ const initialState = {
             link: '/companyTree',
             showCreateButton: false,
             showInMainMenu: true
+        },
+        {
+            id: 4,
+            name: null,
+            component: AddCompanyForm,
+            link: '/add/companyList',
+            showCreateButton: false,
+            showInMainMenu: false
+        },
+        {
+            id: 5,
+            name: null,
+            component: AddEmployeeForm,
+            link: '/add/employeeList',
+            showCreateButton: false,
+            showInMainMenu: false
         }
     ],
     mainItemId: 0,

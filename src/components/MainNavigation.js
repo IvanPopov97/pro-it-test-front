@@ -8,7 +8,8 @@ const MainNavigation = ({items, showCreateButton}) => {
         <nav className='Main-navigation'>
             <ul className='Breadcrumb'>
                 {
-                    items.map(item => <MainNavigationItem key={item.id} item={item}/>)
+                    items.filter(item => item.showInMainMenu)
+                        .map(item => <MainNavigationItem key={item.id} item={item}/>)
                 }
             </ul>
             {showCreateButton ? <CreateButton/> : null}
