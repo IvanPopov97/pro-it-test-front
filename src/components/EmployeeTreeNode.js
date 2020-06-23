@@ -6,7 +6,7 @@ const EmployeeTreeNode = ({ recordId, item, mapStateToModel }) => {
 
     return <TreeNode recordId={recordId}
                      item={item}
-                     fetchChildItems={fetchChildEmployees()}
+                     fetchChildItems={fetchChildEmployees}
                      switchItemsNodeState={switchEmployeesNodeState}
                      mapStateToModel={mapStateToModel}/>
 }
