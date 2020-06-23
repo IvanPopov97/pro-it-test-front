@@ -1,40 +1,37 @@
-import React, {useEffect} from "react";
+import React from "react";
 import '../componentStyles/Form.css'
-import {useDispatch, useSelector} from "react-redux";
-import {fetchCompanyNames, MODEL_NAME} from "../redux/actions/companyActions";
+import {useSelector} from "react-redux";
+import {MODEL_NAME} from "../redux/actions/companyActions";
+import CompanyCombobox from "./CompanyCombobox";
 
 const AddCompanyForm = () => {
-    const dispatch = useDispatch()
-    useEffect(() => { dispatch(fetchCompanyNames()) }, [dispatch])
+
     const form = useSelector(state => state.addForm[MODEL_NAME])
 
-    if (!form)
-        return null
 
-    const companies = form['companies']
+    const submitHandler = event => {
+        event.preventDefault()
+    }
 
-    console.log(companies)
+    const inputChangeHandler = event => {
+        console.log(event.target.name)
+        console.log(event.target.value)
+    }
 
     return (
-        <form>
+        <form onSubmit={submitHandler}>
             <div className="row justify-content-end">
                 <button type="submit" className="Create-button Margin-right">Создать</button>
             </div>
             <div className="input-group input">
-                <input type="text" className="form-control text-black" id="name" placeholder="Название компании"/>
+                <input type="text"
+                       onChange={inputChangeHandler}
+                       className="form-control text-black"
+                       name="name"
+                       placeholder="Название компании"/>
             </div>
-            <div className="input-group">
-                <div className="input-group-prepend">
-                    <label className="input-group-text bg-primary text-second" htmlFor="headCompany">Головная
-                        компания</label>
-                </div>
-                <select className="custom-select input text-black" id="headCompany">
-                    <option defaultValue={null}>Выберите...</option>
-                    {
-                        companies.map((company, i) => <option key={i} value={company.id}>{company.name}</option>)
-                    }
-                </select>
-            </div>
+            <CompanyCombobox form={form}
+                             changeHandler={inputChangeHandler}/>
         </form>
     )
 }

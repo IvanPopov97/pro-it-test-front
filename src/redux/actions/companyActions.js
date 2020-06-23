@@ -61,13 +61,13 @@ export const switchCompaniesNodeState = (nodeId) => {
     }
 }
 
-export const fetchCompanyNames = () => {
+export const fetchCompanyNames = (formItemName) => {
 
     return fetchAndDispatch(
         SET_FORM_ELEMENT_ITEMS,
         `${mainPath}/names`,
         null,
-        {formName: MODEL_NAME, formItemName: 'companies'},
+        {formName: MODEL_NAME, formItemName},
         null,
         objects => (objects.map(object => ({id: object.id, name: object.name})))
     )
