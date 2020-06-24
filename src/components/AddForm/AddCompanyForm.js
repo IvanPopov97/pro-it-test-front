@@ -1,8 +1,8 @@
 import React from "react";
 import '../../componentStyles/Form.css'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import CompanyCombobox from "./CompanyCombobox";
-import {setValue} from "../../redux/actions/addFormActions";
+import {setShouldValidate, setValue} from "../../redux/actions/addFormActions";
 import {MODEL_NAME} from "../../redux/actions/companyActions";
 import Input from "./Input";
 
@@ -10,13 +10,17 @@ const AddCompanyForm = () => {
 
     const dispatch = useDispatch()
 
+    const form = useSelector(state => state.addForm[MODEL_NAME]) || {}
+
     const submitHandler = event => {
         event.preventDefault()
+        Object.keys(form).forEach(formElemName => {
+            dispatch(setShouldValidate(MODEL_NAME, formElemName, true))
+        })
     }
 
     const inputChangeHandler = event => {
         dispatch(setValue(MODEL_NAME, event.target.name, event.target.value))
-
     }
 
     return (

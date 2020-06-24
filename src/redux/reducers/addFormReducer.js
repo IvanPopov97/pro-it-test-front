@@ -1,4 +1,9 @@
-import {SET_FORM_ELEMENT_VALUE, SET_FORM_ELEMENT_ITEMS, SET_FORM_ELEMENT_VALIDATION_FUNCTION} from "../types";
+import {
+    SET_FORM_ELEMENT_VALUE,
+    SET_FORM_ELEMENT_ITEMS,
+    SET_FORM_ELEMENT_VALIDATION_FUNCTION,
+    SET_FORM_ELEMENT_SHOULD_VALIDATE
+} from "../types";
 
 const initialState = {}
 
@@ -18,14 +23,20 @@ const addFormReducer = (state = initialState, action) => {
                 action,
                 (value, element) => ({
                     value,
-                    valid: element.validate ? element.validate(value) : true
+                    valid: (element.shouldValidate && element.validate) ? element.validate(value) : true
                 })
             )
         case SET_FORM_ELEMENT_VALIDATION_FUNCTION:
             return updateState(
                 state,
                 action,
-                validate => ({validate})
+                validate => ({ validate })
+            )
+        case SET_FORM_ELEMENT_SHOULD_VALIDATE:
+            return updateState(
+                state,
+                action,
+                shouldValidate => ({ shouldValidate })
             )
 
         default: return state

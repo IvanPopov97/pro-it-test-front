@@ -15,7 +15,8 @@ const Input = ({ formName, name, placeholder, onChange, errorMessage }) => {
     }, [dispatch, formName, name])
 
     const form = useSelector(state => state.addForm[formName]) || {}
-    const valid = form[name] ? form[name].valid : true
+    const elem = form[name] || {}
+    const valid = elem.valid === undefined ? true : elem.valid
 
     return (
         <Fragment>
@@ -27,7 +28,7 @@ const Input = ({ formName, name, placeholder, onChange, errorMessage }) => {
                        className='form-control text-black'
                        name={name}
                        placeholder={placeholder}
-                       onChange={onChange}
+                       onBlur={onChange}
                 />
             </div>
         </Fragment>

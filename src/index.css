@@ -14,9 +14,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  outline: none;
+:active, :hover, :focus {
+  outline: 0 !important;
+  outline-offset: 0 !important;
 }
+
+/*a {*/
+/*  outline: none;*/
+/*}*/
 
 .Center-alignment {
   display: flex;
