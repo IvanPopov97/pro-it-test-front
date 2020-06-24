@@ -4,6 +4,8 @@ export const SET_CURRENT_PATH = 'SET_CURRENT_PATH'
 // add form reducer action types
 export const SET_FORM_ELEMENT_ITEMS = 'SET_FORM_ELEMENT_ITEMS'
 export const SET_FORM_ELEMENT_VALUE = 'SET_FORM_ELEMENT_VALUE'
+export const SET_FORM_ELEMENT_VALIDATION_FUNCTION = 'SET_FORM_VALIDATION_FUNCTION'
+
 
 // pagination reducer action types
 export const SET_ITEM_COUNT = 'SET_ITEM_COUNT'

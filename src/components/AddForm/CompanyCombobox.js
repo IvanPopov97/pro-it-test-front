@@ -1,16 +1,15 @@
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {fetchCompanyNames} from "../../redux/actions/companyActions";
 
-const name = 'companyNames'
 
-const CompanyCombobox = ({ form, changeHandler }) => {
-
+const CompanyCombobox = ({ formName, name, onChange }) => {
 
     const dispatch = useDispatch()
-    useEffect(() => { dispatch(fetchCompanyNames(name)) }, [dispatch])
+    useEffect(() => { dispatch(fetchCompanyNames(name)) }, [dispatch, name])
 
-    const companies = form ? form[name].items : null
+    const form = useSelector(state => state.addForm[formName]) || {}
+    const companies = form[name] ? form[name].items : null
 
     if (!companies)
         return null
@@ -23,7 +22,7 @@ const CompanyCombobox = ({ form, changeHandler }) => {
             </div>
             <select className="custom-select text-black"
                     name={name}
-                    onChange={changeHandler}
+                    onChange={onChange}
                     id="headCompany">
                 <option defaultValue={null}>Выберите...</option>
                 {

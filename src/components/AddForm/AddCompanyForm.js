@@ -1,14 +1,13 @@
 import React from "react";
 import '../../componentStyles/Form.css'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import CompanyCombobox from "./CompanyCombobox";
-import {setFormElementCurrentValue} from "../../redux/actions/addFormActions";
+import {setValue} from "../../redux/actions/addFormActions";
 import {MODEL_NAME} from "../../redux/actions/companyActions";
 import Input from "./Input";
 
 const AddCompanyForm = () => {
 
-    const form = useSelector(state => state.addForm[MODEL_NAME])
     const dispatch = useDispatch()
 
     const submitHandler = event => {
@@ -16,7 +15,7 @@ const AddCompanyForm = () => {
     }
 
     const inputChangeHandler = event => {
-        dispatch(setFormElementCurrentValue(MODEL_NAME, event.target.name, event.target.value))
+        dispatch(setValue(MODEL_NAME, event.target.name, event.target.value))
 
     }
 
@@ -26,13 +25,15 @@ const AddCompanyForm = () => {
                 <button type='submit' className='Create-button Margin-right'>Создать</button>
             </div>
             <Input
+                formName={MODEL_NAME}
                 name='name'
                 placeholder='Название компании'
                 onChange={inputChangeHandler}
                 errorMessage='Обязательно укажите название компании'
             />
-            <CompanyCombobox form={form}
-                             changeHandler={inputChangeHandler}
+            <CompanyCombobox formName={MODEL_NAME}
+                             name='companies'
+                             onChange={inputChangeHandler}
             />
         </form>
     )
