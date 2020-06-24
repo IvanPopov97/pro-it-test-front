@@ -1,5 +1,5 @@
 import React from "react";
-import {fetchChildCompanies, switchCompaniesNodeState} from "../redux/actions/companyActions";
+import {fetchChildCompanies, switchCompaniesNodeState} from "../../redux/actions/companyActions";
 import TreeNode from "./TreeNode";
 
 const CompanyTreeNode = ({ recordId, item, mapStateToModel }) => {

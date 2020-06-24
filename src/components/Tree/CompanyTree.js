@@ -1,7 +1,7 @@
 import React from "react";
-import '../componentStyles/Tree.css'
-import Tree from "./Tree";
-import {fetchRootCompanies, MODEL_NAME} from "../redux/actions/companyActions";
+import '../../componentStyles/Tree.css'
+import Tree from "../Tree/Tree";
+import {fetchRootCompanies, MODEL_NAME} from "../../redux/actions/companyActions";
 import CompanyTreeNode from "./CompanyTreeNode";
 
 const CompanyTree = () => {

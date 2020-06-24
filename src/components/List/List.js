@@ -2,8 +2,8 @@ import React, {Fragment, useEffect} from "react";
 import Pagination from "./Pagination";
 import {Route, Switch} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import PageNumberValidator from "./PageNumberValidator";
-import {setPageNumber} from "../redux/actions/paginationActions";
+import PageNumberValidator from "../PageNumberValidator";
+import {setPageNumber} from "../../redux/actions/paginationActions";
 
 const List = ({actionBeforeRender, actionAfterPageNumberValidation, TableComponent}) => {
 

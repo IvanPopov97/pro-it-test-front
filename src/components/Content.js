@@ -2,7 +2,7 @@ import React from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {setCurrentPath} from "../redux/actions/appActions";
-import ActionDispatcher from "./ActionDispatcher";
+import ActionDispatcher from "./HOC/ActionDispatcher";
 
 const Content = () => {
     const items = useSelector(state => state.app.items)

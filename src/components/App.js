@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import Content from './Content'
-import Header from "./Header";
+import Header from "./Header/Header";
 
 function App() {
     return (

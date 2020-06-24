@@ -1,7 +1,7 @@
 import React from 'react'
-import '../componentStyles/Main-navigation.css'
+import '../../componentStyles/Main-navigation.css'
 import MainNavigationItem from './MainNavigationItem'
-import CreateButton from "./CreateButton";
+import CreateButton from "../CreateButton";
 
 const MainNavigation = ({items, showCreateButton}) => {
     return (

@@ -1,8 +1,8 @@
 import React from "react";
-import '../componentStyles/Tree.css'
-import {fetchRootEmployees, MODEL_NAME} from "../redux/actions/employeeActions";
+import '../../componentStyles/Tree.css'
+import {fetchRootEmployees, MODEL_NAME} from "../../redux/actions/employeeActions";
 import EmployeeTreeNode from "./EmployeeTreeNode";
-import Tree from "./Tree";
+import Tree from "../Tree/Tree";
 
 const EmployeeTree = () => {
 

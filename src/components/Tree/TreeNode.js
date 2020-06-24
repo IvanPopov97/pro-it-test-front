@@ -29,12 +29,15 @@ const TreeNode = ({ recordId,
             <ul className={ulClassName}>
                 {
                     childItemsId.map(
-                        id => <TreeNode key={id}
-                                        recordId={id}
-                                        item={items[id]}
-                                        fetchChildItems={fetchChildItems}
-                                        switchItemsNodeState={switchItemsNodeState}
-                                        mapStateToModel={mapStateToModel}/>
+                        id => (
+                            <TreeNode key={id}
+                                      recordId={id}
+                                      item={items[id]}
+                                      fetchChildItems={fetchChildItems}
+                                      switchItemsNodeState={switchItemsNodeState}
+                                      mapStateToModel={mapStateToModel}
+                            />
+                        )
                     )
                 }
             </ul>

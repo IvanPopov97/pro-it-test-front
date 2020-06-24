@@ -1,7 +1,7 @@
 import React from "react";
 import TableHead from "./TableHead";
 import TableRow from "./TableRow";
-import '../componentStyles/Table.css'
+import '../../componentStyles/Table.css'
 
 const Table = ({columnNames, objects, mapObjectToValues}) => {
     return (
@@ -12,7 +12,8 @@ const Table = ({columnNames, objects, mapObjectToValues}) => {
                 objects.map((object, i) => (
                         <TableRow key = {i}
                                   columnNames={columnNames}
-                                  values={mapObjectToValues(object)}/>
+                                  values={mapObjectToValues(object)}
+                        />
                     )
                 )
             }

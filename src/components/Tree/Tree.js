@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import '../componentStyles/Tree.css'
+import '../../componentStyles/Tree.css'
 
 const Tree = ({ fetchRootItems, treeNodeComponent, mapStateToModel }) => {
     const dispatch = useDispatch()

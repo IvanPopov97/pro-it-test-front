@@ -1,8 +1,8 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import '../componentStyles/Table.css'
+import '../../componentStyles/Table.css'
 import Table from "./Table";
-import {MODEL_NAME} from "../redux/actions/companyActions";
+import {MODEL_NAME} from "../../redux/actions/companyActions";
 
 const columnNames = ['ID', 'Название компании', 'Количество сотрудников', 'Головная компания']
 
@@ -21,7 +21,8 @@ const CompanyTable = () => {
         <Table
             columnNames={columnNames}
             objects={companies.items}
-            mapObjectToValues={mapCompanyToValueArray}/>
+            mapObjectToValues={mapCompanyToValueArray}
+        />
     )
 }
 

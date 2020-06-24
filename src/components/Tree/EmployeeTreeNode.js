@@ -1,5 +1,5 @@
 import React from "react";
-import {fetchChildEmployees, switchEmployeesNodeState} from "../redux/actions/employeeActions";
+import {fetchChildEmployees, switchEmployeesNodeState} from "../../redux/actions/employeeActions";
 import TreeNode from "./TreeNode";
 
 const EmployeeTreeNode = ({ recordId, item, mapStateToModel }) => {

@@ -1,10 +1,10 @@
-import EmployeeList from '../../components/EmployeeList'
-import EmployeeTree from '../../components/EmployeeTree'
-import CompanyList from '../../components/CompanyList'
-import CompanyTree from '../../components/CompanyTree'
+import EmployeeList from '../../components/List/EmployeeList'
+import EmployeeTree from '../../components/Tree/EmployeeTree'
+import CompanyList from '../../components/List/CompanyList'
+import CompanyTree from '../../components/Tree/CompanyTree'
 import {SET_CURRENT_PATH} from "../types";
-import AddCompanyForm from "../../components/AddCompanyForm";
-import AddEmployeeForm from "../../components/AddEmployeeForm";
+import AddCompanyForm from "../../components/AddForm/AddCompanyForm";
+import AddEmployeeForm from "../../components/AddForm/AddEmployeeForm";
 
 const initialState = {
     items: [

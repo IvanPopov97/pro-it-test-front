@@ -1,8 +1,8 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import '../componentStyles/Table.css'
+import '../../componentStyles/Table.css'
 import Table from "./Table";
-import {MODEL_NAME} from "../redux/actions/employeeActions";
+import {MODEL_NAME} from "../../redux/actions/employeeActions";
 
 const columnNames = ['ID', 'Имя сотрудника', 'Организация', 'Руководитель']
 
@@ -20,7 +20,8 @@ const EmployeeTable = () => {
         <Table
             columnNames={columnNames}
             objects={employees.items}
-            mapObjectToValues={mapEmployeeToValueArray}/>
+            mapObjectToValues={mapEmployeeToValueArray}
+        />
     )
 }
 
