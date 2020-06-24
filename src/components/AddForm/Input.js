@@ -6,7 +6,7 @@ import {setValidationFunction} from "../../redux/actions/addFormActions";
 const Input = ({ formName, name, placeholder, onChange, errorMessage }) => {
 
     const dispatch = useDispatch()
-    const validationFunc = value => value.trim().length > 0
+    const validationFunc = value => value ? value.trim().length > 0 : false
 
     useEffect(() => {
         dispatch(
@@ -28,7 +28,7 @@ const Input = ({ formName, name, placeholder, onChange, errorMessage }) => {
                        className='form-control text-black'
                        name={name}
                        placeholder={placeholder}
-                       onBlur={onChange}
+                       onChange={onChange}
                 />
             </div>
         </Fragment>

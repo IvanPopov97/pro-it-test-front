@@ -14,9 +14,18 @@ const AddCompanyForm = () => {
 
     const submitHandler = event => {
         event.preventDefault()
+        // validateForm
         Object.keys(form).forEach(formElemName => {
             dispatch(setShouldValidate(MODEL_NAME, formElemName, true))
         })
+        if (Object.values(form).every(elem => elem.valid)) {
+            // addCompanyHandler
+            const res = Object.assign(...Object.entries(form).map(entry => ({
+                [entry[0]]: entry[1].value
+            })))
+            console.log(res)
+
+        }
     }
 
     const inputChangeHandler = event => {
@@ -36,7 +45,7 @@ const AddCompanyForm = () => {
                 errorMessage='Обязательно укажите название компании'
             />
             <CompanyCombobox formName={MODEL_NAME}
-                             name='companies'
+                             name='companyId'
                              onChange={inputChangeHandler}
             />
         </form>

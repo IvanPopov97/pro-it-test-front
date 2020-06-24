@@ -36,7 +36,10 @@ const addFormReducer = (state = initialState, action) => {
             return updateState(
                 state,
                 action,
-                shouldValidate => ({ shouldValidate })
+                (shouldValidate, element) => ({
+                    shouldValidate,
+                    valid: (shouldValidate && element.validate) ? element.validate(element.value) : true
+                })
             )
 
         default: return state
