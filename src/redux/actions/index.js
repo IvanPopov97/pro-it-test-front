@@ -1,6 +1,7 @@
 import {SERVER} from "../../config";
 
 const headers = new Headers({
+    'Content-Type': 'application/json',
     'Origin': window.location.href
 })
 
@@ -24,10 +25,20 @@ export const fetchAndDispatch = (actionTypeAfterFetch,
         if (actionTypeBeforeFetch)
             dispatch({type: actionTypeBeforeFetch})
         const get = createGetRequest(url, params)
+        //let json = await axios.get(get, headers)
         let json = await fetch(get, {headers})
             .then(response => response.json())
         if (mapFunction) json = mapFunction(json)
         const payloadWithData = payload ? {...payload, content: json} : json
         dispatch({type: actionTypeAfterFetch, payload: payloadWithData})
     }
+}
+
+export const postRequest = (url, object) => {
+    console.log(url)
+    return fetch(SERVER + url, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(object),
+    })
 }

@@ -28,7 +28,7 @@ const Input = ({ formName, name, placeholder, onChange, errorMessage }) => {
                        className='form-control text-black'
                        name={name}
                        placeholder={placeholder}
-                       onChange={onChange}
+                       onBlur={onChange}
                 />
             </div>
         </Fragment>

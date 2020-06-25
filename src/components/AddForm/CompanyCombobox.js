@@ -1,12 +1,20 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {fetchCompanyNames} from "../../redux/actions/companyActions";
+import {setValueMapper} from "../../redux/actions/addFormActions";
 
 
 const CompanyCombobox = ({ formName, name, onChange }) => {
 
+    const mapper = id => ({id: Number(id)})
+
     const dispatch = useDispatch()
-    useEffect(() => { dispatch(fetchCompanyNames(name)) }, [dispatch, name])
+    useEffect(() => {
+        dispatch(fetchCompanyNames(name))
+        dispatch(
+            setValueMapper(formName, name, mapper)
+        )
+    }, [dispatch, formName, name])
 
     const form = useSelector(state => state.addForm[formName]) || {}
     const companies = form[name] ? form[name].items : null

@@ -1,4 +1,4 @@
-import {calcOffset, fetchAndDispatch} from "./index";
+import {calcOffset, fetchAndDispatch, postRequest} from "./index";
 import {
     HIDE_PAGINATION, SET_CHILD_ITEMS, SET_FORM_ELEMENT_ITEMS, SET_ITEM_COUNT,
     SET_LIST_ITEMS,
@@ -51,7 +51,7 @@ export const fetchChildCompanies = (parentRecordId, parentId) => {
     )
 }
 
-export const switchCompaniesNodeState = (nodeId) => {
+export const switchCompaniesNodeState = nodeId => {
     return {
         type: SWITCH_NODE_STATE,
         payload: {
@@ -61,7 +61,7 @@ export const switchCompaniesNodeState = (nodeId) => {
     }
 }
 
-export const fetchCompanyNames = (formElementName) => {
+export const fetchCompanyNames = formElementName => {
     return fetchAndDispatch(
         SET_FORM_ELEMENT_ITEMS,
         `${mainPath}/names`,
@@ -70,4 +70,9 @@ export const fetchCompanyNames = (formElementName) => {
         null,
         objects => (objects.map(object => ({id: object.id, name: object.name})))
     )
+}
+
+export const addCompany = company => {
+    console.log(company)
+    postRequest('/company', company).then(response => console.log(response))
 }

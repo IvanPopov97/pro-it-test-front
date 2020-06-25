@@ -2,7 +2,7 @@ import {
     SET_FORM_ELEMENT_VALUE,
     SET_FORM_ELEMENT_ITEMS,
     SET_FORM_ELEMENT_VALIDATION_FUNCTION,
-    SET_FORM_ELEMENT_SHOULD_VALIDATE
+    SET_FORM_ELEMENT_SHOULD_VALIDATE, SET_FORM_ELEMENT_MAPPER
 } from "../types";
 
 const initialState = {}
@@ -22,9 +22,17 @@ const addFormReducer = (state = initialState, action) => {
                 state,
                 action,
                 (value, element) => ({
-                    value,
-                    valid: (element.shouldValidate && element.validate) ? element.validate(value) : true
+                    value: element.mapper ? element.mapper(value) : value,
+                    valid: (element.shouldValidate && element.validate)
+                        ? element.validate(element.mapper ? element.mapper(value) : value)
+                        : true
                 })
+            )
+        case SET_FORM_ELEMENT_MAPPER:
+            return updateState(
+                state,
+                action,
+                mapper => ({ mapper })
             )
         case SET_FORM_ELEMENT_VALIDATION_FUNCTION:
             return updateState(

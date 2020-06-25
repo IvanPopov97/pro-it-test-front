@@ -3,7 +3,7 @@ import '../../componentStyles/Form.css'
 import {useDispatch, useSelector} from "react-redux";
 import CompanyCombobox from "./CompanyCombobox";
 import {setShouldValidate, setValue} from "../../redux/actions/addFormActions";
-import {MODEL_NAME} from "../../redux/actions/companyActions";
+import {addCompany, MODEL_NAME} from "../../redux/actions/companyActions";
 import Input from "./Input";
 
 const AddCompanyForm = () => {
@@ -14,17 +14,17 @@ const AddCompanyForm = () => {
 
     const submitHandler = event => {
         event.preventDefault()
-        // validateForm
         Object.keys(form).forEach(formElemName => {
             dispatch(setShouldValidate(MODEL_NAME, formElemName, true))
         })
         if (Object.values(form).every(elem => elem.valid)) {
-            // addCompanyHandler
-            const res = Object.assign(...Object.entries(form).map(entry => ({
-                [entry[0]]: entry[1].value
-            })))
-            console.log(res)
-
+            const company = Object.assign(...Object.entries(form).map(
+                entry => ({
+                    [entry[0]]: entry[1].value
+                })
+            ))
+            console.log(JSON.stringify(company))
+            addCompany(company);
         }
     }
 
@@ -45,7 +45,7 @@ const AddCompanyForm = () => {
                 errorMessage='Обязательно укажите название компании'
             />
             <CompanyCombobox formName={MODEL_NAME}
-                             name='companyId'
+                             name='headCompany'
                              onChange={inputChangeHandler}
             />
         </form>
