@@ -12,7 +12,6 @@ const mapValuesToDto = values => ({
 })
 
 const required = values => {
-    console.log(values)
     return (
         (values && values.trim().length > 0)
             ? undefined
@@ -20,17 +19,8 @@ const required = values => {
     )
 }
 
-// const validate = values => {
-//     console.log(values)
-//     const error = {}
-//     if (!values.name || values.name.trim().length === 0)
-//         error.name = 'Обязательно укажите название компании'
-//     return error
-// }
-
 const AddCompanyForm = ({ handleSubmit, reset, submitting }) => {
     const submit = values => {
-        console.log(values)
         companyActionCreator.addItem(mapValuesToDto(values))
         reset()
     }
