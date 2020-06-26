@@ -30,7 +30,26 @@ export const fetchAndDispatch = (url,
         const get = createGetRequest(url, params)
         const json = await fetch(get, {headers})
             .then(response => response.json())
-        dispatch(mapDataToAction(json))
+            .catch(() => {console.log('Не удалось загрузить данные')})
+        if (json)
+            dispatch(mapDataToAction(json))
+    }
+}
+
+export const postAndDispatch = (url,
+                                object,
+                                mapResponseToAction,
+                                actionBeforePost) => {
+    return async dispatch => {
+        if (actionBeforePost)
+            dispatch(actionBeforePost)
+        const response = await postRequest(url, object).catch(() => {console.log('Не удалось отправить данные')})
+        //console.log(response)
+        if (response && response.ok) {
+            const json = await response.json()
+            if (json)
+                dispatch(mapResponseToAction(json))
+        }
     }
 }
 

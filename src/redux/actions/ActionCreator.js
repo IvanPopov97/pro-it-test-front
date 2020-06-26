@@ -1,5 +1,6 @@
-import {calcOffset, createAction, fetchAndDispatch, postRequest} from "./index";
+import {calcOffset, createAction, fetchAndDispatch, postAndDispatch} from "./index";
 import {
+    ADD_SELECT_CONTROL_ITEM,
     HIDE_PAGINATION,
     SET_CHILD_ITEMS,
     SET_ITEM_COUNT,
@@ -84,6 +85,16 @@ export class ActionCreator {
     }
 
     addItem(item) {
-        postRequest(this.requestPath, item).then(response => console.log(response))
+        return postAndDispatch(this.requestPath, item, id => createAction(
+            ADD_SELECT_CONTROL_ITEM, {
+                id, name: item.name
+            })
+        )
+        //postRequest(this.requestPath, item).then(response => console.log(response))
+        // postRequest(this.requestPath, item).then(response => {
+        //     if (response.ok) {
+        //
+        //     }
+        // }).catch(() => { console.log('Не удалось отправить данные на сервер') })
     }
 }

@@ -21,7 +21,8 @@ const required = values => {
 
 const AddCompanyForm = ({ handleSubmit, reset, submitting }) => {
     const submit = values => {
-        companyActionCreator.addItem(mapValuesToDto(values))
+        console.log(values)
+        dispatch(companyActionCreator.addItem(mapValuesToDto(values)))
         reset()
     }
 

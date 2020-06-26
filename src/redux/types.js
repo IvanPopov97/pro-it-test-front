@@ -2,6 +2,7 @@
 export const SET_CURRENT_PATH = 'SET_CURRENT_PATH'
 
 export const SET_SELECT_CONTROL_ITEMS = 'SET_SELECT_CONTROL_ITEMS'
+export const ADD_SELECT_CONTROL_ITEM = 'ADD_SELECT_CONTROL_ITEM'
 
 // pagination reducer action types
 export const SET_ITEM_COUNT = 'SET_ITEM_COUNT'

@@ -12,7 +12,7 @@ const Select = ({input, name="headCompany", items=[]}) => {
                 className="custom-select text-black"
                 name={name}
                 id={name}>
-                <option defaultValue={undefined}>Выберите...</option>
+                <option value={undefined}>Выберите...</option>
                 {items.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
             </select>
         </div>
