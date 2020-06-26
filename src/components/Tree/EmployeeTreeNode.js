@@ -1,14 +1,13 @@
 import React from "react";
-import {fetchChildEmployees, switchEmployeesNodeState} from "../../redux/actions/employeeActions";
 import TreeNode from "./TreeNode";
+import {employeeActionCreator} from "../../redux/actions/EmployeeActionCreator";
 
-const EmployeeTreeNode = ({ recordId, item, mapStateToModel }) => {
+const EmployeeTreeNode = ({ recordId, item, tree }) => {
 
     return <TreeNode recordId={recordId}
                      item={item}
-                     fetchChildItems={fetchChildEmployees}
-                     switchItemsNodeState={switchEmployeesNodeState}
-                     mapStateToModel={mapStateToModel}/>
+                     actionCreator={employeeActionCreator}
+                     tree={tree}/>
 }
 
 export default EmployeeTreeNode

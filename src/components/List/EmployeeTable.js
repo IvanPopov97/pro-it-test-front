@@ -2,7 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import '../../componentStyles/Table.css'
 import Table from "./Table";
-import {MODEL_NAME} from "../../redux/actions/employeeActions";
+import {employeeActionCreator} from "../../redux/actions/EmployeeActionCreator";
 
 const columnNames = ['ID', 'Имя сотрудника', 'Организация', 'Руководитель']
 
@@ -13,7 +13,7 @@ const mapEmployeeToValueArray = employee => Object.values({
 })
 
 const EmployeeTable = () => {
-    const employees = useSelector(state => state.list[MODEL_NAME])
+    const employees = useSelector(state => state.list[employeeActionCreator.modelName])
     if (!employees)
         return <div>Больше сотрудников нет</div>
     return (

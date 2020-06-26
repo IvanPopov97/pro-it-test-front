@@ -12,7 +12,7 @@ const MainNavigation = ({items, showCreateButton}) => {
                         .map(item => <MainNavigationItem key={item.id} item={item}/>)
                 }
             </ul>
-            {showCreateButton ? <CreateButton/> : null}
+            {showCreateButton && <CreateButton/>}
         </nav>
     )
 }

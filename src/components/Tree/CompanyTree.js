@@ -1,16 +1,14 @@
 import React from "react";
 import '../../componentStyles/Tree.css'
 import Tree from "../Tree/Tree";
-import {fetchRootCompanies, MODEL_NAME} from "../../redux/actions/companyActions";
 import CompanyTreeNode from "./CompanyTreeNode";
+import {companyActionCreator} from "../../redux/actions/CompanyActionCreator";
 
 const CompanyTree = () => {
-    const mapStateToModel = state => state.tree[MODEL_NAME]
-
     return (
-        <Tree fetchRootItems={fetchRootCompanies}
+        <Tree actionCreator={companyActionCreator}
               treeNodeComponent={CompanyTreeNode}
-              mapStateToModel={mapStateToModel}/>
+        />
     )
 }
 

@@ -1,13 +1,12 @@
 import React from "react";
 import EmployeeTable from "./EmployeeTable";
 import List from "./List";
-import {fetchEmployees, updateEmployeeCount} from "../../redux/actions/employeeActions";
+import {employeeActionCreator} from "../../redux/actions/EmployeeActionCreator";
 
 const EmployeeList = () => {
 
     return (
-        <List actionBeforeRender={updateEmployeeCount}
-              actionAfterPageNumberValidation={fetchEmployees}
+        <List actionCreator={employeeActionCreator}
               TableComponent={EmployeeTable}
         />
     )

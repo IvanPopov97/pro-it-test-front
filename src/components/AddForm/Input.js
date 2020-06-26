@@ -1,34 +1,17 @@
-import React, {Fragment, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setValidationFunction} from "../../redux/actions/addFormActions";
+//import {Field} from "redux-form";
+import React, {Fragment} from "react";
+import ErrorMessage from "./ErrorMessage";
 
-
-const Input = ({ formName, name, placeholder, onChange, errorMessage }) => {
-
-    const dispatch = useDispatch()
-    const validationFunc = value => value ? value.trim().length > 0 : false
-
-    useEffect(() => {
-        dispatch(
-            setValidationFunction(formName, name, validationFunc)
-        )
-    }, [dispatch, formName, name])
-
-    const form = useSelector(state => state.addForm[formName]) || {}
-    const elem = form[name] || {}
-    const valid = elem.valid === undefined ? true : elem.valid
+const Input = ({type="text", placeholder="Название", meta: { touched, error }}) => {
 
     return (
         <Fragment>
-            <div className='input-group input'>
-                <span className='text-danger'>{valid ? null : errorMessage}</span>
-            </div>
+            {touched && error && <ErrorMessage message={error}/>}
             <div className="input-group">
-                <input type='text'
-                       className='form-control text-black'
-                       name={name}
-                       placeholder={placeholder}
-                       onBlur={onChange}
+                <input
+                    className='form-control text-black'
+                    type = {type}
+                    placeholder={placeholder}
                 />
             </div>
         </Fragment>

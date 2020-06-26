@@ -5,19 +5,19 @@ import {useDispatch, useSelector} from "react-redux";
 import PageNumberValidator from "../PageNumberValidator";
 import {setPageNumber} from "../../redux/actions/paginationActions";
 
-const List = ({actionBeforeRender, actionAfterPageNumberValidation, TableComponent}) => {
+const List = ({actionCreator, TableComponent}) => {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(actionBeforeRender())
-        }, [dispatch, actionBeforeRender]
+        dispatch(actionCreator.updateCount())
+        }, [dispatch, actionCreator]
     )
 
     const pageSize = useSelector(state => state.pagination.pageSize)
 
     const actions = [
         setPageNumber,
-        pageNumber => actionAfterPageNumberValidation(pageNumber, pageSize)
+        pageNumber => actionCreator.fetchItems(pageNumber, pageSize)
     ]
 
     const path = useSelector(state => state.app.currentPath)

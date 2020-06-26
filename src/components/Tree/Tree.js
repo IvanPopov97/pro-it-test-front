@@ -2,16 +2,19 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import '../../componentStyles/Tree.css'
 
-const Tree = ({ fetchRootItems, treeNodeComponent, mapStateToModel }) => {
+const Tree = ({ actionCreator, treeNodeComponent }) => {
+
+    const tree = useSelector(state => state.tree[actionCreator.modelName])
+
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(fetchRootItems())
-    }, [dispatch, fetchRootItems])
-
-    const tree = useSelector(mapStateToModel)
+        dispatch(actionCreator.fetchRootItems())
+    }, [dispatch, actionCreator])
 
     if (!tree)
         return null
+
+    const treeItems = tree.rootItemsId || []
 
     const Component = treeNodeComponent
 
@@ -19,13 +22,14 @@ const Tree = ({ fetchRootItems, treeNodeComponent, mapStateToModel }) => {
         <div className='Center-alignment'>
             <ul className='Tree'>
                 {
-                    tree.rootItemsId.map(
+                    treeItems.map(
                         id => {
                             return (
                                 <Component key={id}
                                            recordId={id}
                                            item={tree.items[id]}
-                                           mapStateToModel={mapStateToModel}/>
+                                           actionCreator={actionCreator}
+                                           tree={tree}/>
                             )
                         }
                     )

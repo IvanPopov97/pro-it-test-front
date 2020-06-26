@@ -1,20 +1,16 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
-const TreeNode = ({ recordId,
-                      item: {id, name, isOpened, hasChild, childItemsId},
-                      fetchChildItems,
-                      switchItemsNodeState,
-                      mapStateToModel}) => {
+const TreeNode = ({recordId, item: {id, name, isOpened, hasChild, childItemsId}, actionCreator, tree}) => {
     const dispatch = useDispatch()
 
     const clickHandler = () => {
         if (!isOpened)
-            dispatch(fetchChildItems(recordId, id))
-        dispatch(switchItemsNodeState(recordId))
+            dispatch(actionCreator.fetchChildItems(recordId, id))
+        dispatch(actionCreator.switchTreeNodeState(recordId))
     }
 
-    const items = useSelector(mapStateToModel).items
+    const items = tree.items
 
     if (!hasChild)
         return <li>{name}</li>
@@ -33,9 +29,8 @@ const TreeNode = ({ recordId,
                             <TreeNode key={id}
                                       recordId={id}
                                       item={items[id]}
-                                      fetchChildItems={fetchChildItems}
-                                      switchItemsNodeState={switchItemsNodeState}
-                                      mapStateToModel={mapStateToModel}
+                                      actionCreator={actionCreator}
+                                      tree={tree}
                             />
                         )
                     )

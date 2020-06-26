@@ -1,17 +1,18 @@
 import React from "react";
 import '../../componentStyles/Tree.css'
-import {fetchRootEmployees, MODEL_NAME} from "../../redux/actions/employeeActions";
 import EmployeeTreeNode from "./EmployeeTreeNode";
 import Tree from "../Tree/Tree";
+import {employeeActionCreator} from "../../redux/actions/EmployeeActionCreator";
+//import {useSelector} from "react-redux";
 
 const EmployeeTree = () => {
 
-    const mapStateToModel = state => state.tree[MODEL_NAME]
+    //const tree = useSelector(state => state.tree[employeeActionCreator.modelName])
 
     return (
-        <Tree fetchRootItems={fetchRootEmployees}
+        <Tree actionCreator={employeeActionCreator}
               treeNodeComponent={EmployeeTreeNode}
-              mapStateToModel={mapStateToModel}/>
+        />
     )
 }
 

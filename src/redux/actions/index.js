@@ -5,6 +5,11 @@ const headers = new Headers({
     'Origin': window.location.href
 })
 
+export const createAction = (type, payload) => ({
+    type,
+    payload
+})
+
 export const createGetRequest = (urlString, params = null) => {
     if (!params)
         return SERVER + urlString
@@ -15,22 +20,17 @@ export const createGetRequest = (urlString, params = null) => {
 
 export const calcOffset = (pageNumber, pageSize) => (pageNumber - 1) * pageSize
 
-export const fetchAndDispatch = (actionTypeAfterFetch,
-                                 url,
-                                 params = null,
-                                 payload = null,
-                                 actionTypeBeforeFetch = null,
-                                 mapFunction = null) => {
+export const fetchAndDispatch = (url,
+                                 params,
+                                 mapDataToAction,
+                                 actionBeforeFetch) => {
     return async dispatch => {
-        if (actionTypeBeforeFetch)
-            dispatch({type: actionTypeBeforeFetch})
+        if (actionBeforeFetch)
+            dispatch(actionBeforeFetch)
         const get = createGetRequest(url, params)
-        //let json = await axios.get(get, headers)
-        let json = await fetch(get, {headers})
+        const json = await fetch(get, {headers})
             .then(response => response.json())
-        if (mapFunction) json = mapFunction(json)
-        const payloadWithData = payload ? {...payload, content: json} : json
-        dispatch({type: actionTypeAfterFetch, payload: payloadWithData})
+        dispatch(mapDataToAction(json))
     }
 }
 

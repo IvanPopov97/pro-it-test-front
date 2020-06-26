@@ -3,12 +3,13 @@ import {SET_LIST_ITEMS} from "../types";
 const initialState = {}
 
 const listReducer = (state = initialState, action) => {
-    switch (action.type) {
+    const {type, payload} = action
+    switch (type) {
         case SET_LIST_ITEMS:
             return {
                 ...state,
-                [action.payload.name]: {
-                    items: action.payload.content
+                [payload.name]: {
+                    items: payload.items
                 }
             }
         default: return state

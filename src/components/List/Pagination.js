@@ -14,26 +14,14 @@ const Pagination = () => {
     if (isHidden)
         return null
 
+    const linkToPaginationItem = link => <PaginationItem key={link} link={link} text={link}/>
+
     return (
         <nav className="Pagination Center-alignment">
             <ul className="Pagination-items">
-                {
-                    first
-                        ? null
-                        : <PaginationItem link={pageNumber - 1} text='🡐'/>
-                }
-                {
-                    first && last
-                        ? null
-                        : links.map(
-                        link => <PaginationItem key={link} link={link} text={link}/>
-                        )
-                }
-                {
-                    last
-                        ? null
-                        : <PaginationItem link={pageNumber + 1} text='🡒'/>
-                }
+                {first || <PaginationItem link={pageNumber - 1} text='🡐'/>}
+                {(first && last) || links.map(linkToPaginationItem)}
+                {last || <PaginationItem link={pageNumber + 1} text='🡒'/>}
             </ul>
         </nav>
     )

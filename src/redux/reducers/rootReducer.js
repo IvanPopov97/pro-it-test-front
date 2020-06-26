@@ -3,11 +3,13 @@ import appReducer from "./appReducer";
 import paginationReducer from "./paginationReducer";
 import listReducer from "./listReducer";
 import treeReducer from "./treeReducer";
-import addFormReducer from "./addFormReducer";
+import {reducer as formReducer} from "redux-form";
+import selectControlReducer from "./selectControlReducer";
 
 export const rootReducer = combineReducers({
     app: appReducer,
-    addForm: addFormReducer,
+    selectControl: selectControlReducer,
+    form: formReducer,
     pagination: paginationReducer,
     list: listReducer,
     tree: treeReducer

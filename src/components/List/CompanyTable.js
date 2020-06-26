@@ -2,7 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import '../../componentStyles/Table.css'
 import Table from "./Table";
-import {MODEL_NAME} from "../../redux/actions/companyActions";
+import {companyActionCreator} from "../../redux/actions/CompanyActionCreator";
 
 const columnNames = ['ID', 'Название компании', 'Количество сотрудников', 'Головная компания']
 
@@ -14,7 +14,7 @@ const mapCompanyToValueArray = company => (
 )
 
 const CompanyTable = () => {
-    const companies = useSelector(state => state.list[MODEL_NAME])
+    const companies = useSelector(state => state.list[companyActionCreator.modelName])
     if (!companies)
         return <div>Больше компаний нет</div>
     return (

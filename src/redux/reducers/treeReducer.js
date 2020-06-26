@@ -9,8 +9,8 @@ const treeReducer = (state = initialState, action) => {
             return {
                 ...state,
                 [action.payload.name]: {
-                    items: action.payload.content.map(item => itemMapper(item)),
-                    rootItemsId: range(0, action.payload.content.length)
+                    items: action.payload.items.map(item => itemMapper(item)),
+                    rootItemsId: range(0, action.payload.items.length)
                 }
             }
         case SWITCH_NODE_STATE:
@@ -50,7 +50,7 @@ const switchNodeState = (state, action) => {
 }
 
 const setChildItems = (state, action) => {
-    const childItems = action.payload.content.map(
+    const childItems = action.payload.items.map(
         childItem => itemMapper(childItem)
     )
 

@@ -1,14 +1,13 @@
 import React from "react";
-import {fetchChildCompanies, switchCompaniesNodeState} from "../../redux/actions/companyActions";
 import TreeNode from "./TreeNode";
+import {companyActionCreator} from "../../redux/actions/CompanyActionCreator";
 
-const CompanyTreeNode = ({ recordId, item, mapStateToModel }) => {
+const CompanyTreeNode = ({ recordId, item, tree }) => {
 
     return <TreeNode recordId={recordId}
                      item={item}
-                     fetchChildItems={fetchChildCompanies}
-                     switchItemsNodeState={switchCompaniesNodeState}
-                     mapStateToModel={mapStateToModel}/>
+                     actionCreator={companyActionCreator}
+                     tree={tree}/>
 }
 
 export default CompanyTreeNode
