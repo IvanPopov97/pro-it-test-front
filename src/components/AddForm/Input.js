@@ -2,13 +2,14 @@
 import React, {Fragment} from "react";
 import ErrorMessage from "./ErrorMessage";
 
-const Input = ({type="text", placeholder="Название", meta: { touched, error }}) => {
+const Input = ({input, type="text", placeholder="Название", meta: { touched, error }}) => {
 
     return (
         <Fragment>
             {touched && error && <ErrorMessage message={error}/>}
             <div className="input-group">
                 <input
+                    {...input}
                     className='form-control text-black'
                     type = {type}
                     placeholder={placeholder}

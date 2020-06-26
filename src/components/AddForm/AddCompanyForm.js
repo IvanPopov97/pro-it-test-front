@@ -8,29 +8,32 @@ import {companyActionCreator} from "../../redux/actions/CompanyActionCreator";
 
 const mapValuesToDto = values => ({
     name: values.name,
-    headCompany: {id: Number(values.headCompany)}
+    headCompany: values.headCompany ? {id: Number(values.headCompany)} : null
 })
 
+const required = values => {
+    console.log(values)
+    return (
+        (values && values.trim().length > 0)
+            ? undefined
+            : 'Обязательно укажите название компании'
+    )
+}
+
 // const validate = values => {
-//     const errors = {};
-//     if (!values.name || values.name.trim().length === 0) {
-//         console.log("It's wrong. You're fucking prick!")
-//         errors.name = 'Обязательно укажите название компании';
-//     }
-//     return errors
+//     console.log(values)
+//     const error = {}
+//     if (!values.name || values.name.trim().length === 0)
+//         error.name = 'Обязательно укажите название компании'
+//     return error
 // }
 
-const required = values => (values && values.trim().length > 0)
-    ? undefined
-    : 'Обязательно укажите название компании'
-
-const AddCompanyForm = ({ handleSubmit, reset }) => {
+const AddCompanyForm = ({ handleSubmit, reset, submitting }) => {
     const submit = values => {
+        console.log(values)
         companyActionCreator.addItem(mapValuesToDto(values))
         reset()
     }
-
-    //console.log(error)
 
     const dispatch = useDispatch()
     useEffect(() => {
@@ -42,13 +45,14 @@ const AddCompanyForm = ({ handleSubmit, reset }) => {
     return (
         <form onSubmit={ handleSubmit(submit) }>
             <div className='row justify-content-end'>
-                <button type="submit" className='Create-button Margin-right'>Сохранить</button>
+                <button type="submit" disabled={submitting} className='Create-button Margin-right'>Сохранить</button>
             </div>
             <Field
                 name="name"
                 placeholder="Название компании"
-                component={Input}
+                type="text"
                 validate={required}
+                component={Input}
             />
             <Field
                 name="headCompany"

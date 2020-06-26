@@ -3,9 +3,6 @@ export const SET_CURRENT_PATH = 'SET_CURRENT_PATH'
 
 export const SET_SELECT_CONTROL_ITEMS = 'SET_SELECT_CONTROL_ITEMS'
 
-// add form reducer action types
-export const SET_FORM_ELEMENT_ITEMS = 'SET_FORM_ELEMENT_ITEMS'
-
 // pagination reducer action types
 export const SET_ITEM_COUNT = 'SET_ITEM_COUNT'
 export const SET_PAGE_NUMBER = 'SET_PAGE_NUMBER'
