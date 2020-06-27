@@ -3,6 +3,8 @@ import '../../componentStyles/Pagination.css'
 import PaginationItem from "./PaginationItem";
 import {useSelector} from "react-redux";
 
+const linkToPaginationItem = link => <PaginationItem key={link} link={link} text={link}/>
+
 const Pagination = () => {
 
     const links = useSelector(state => state.pagination.links)
@@ -13,8 +15,6 @@ const Pagination = () => {
 
     if (isHidden)
         return null
-
-    const linkToPaginationItem = link => <PaginationItem key={link} link={link} text={link}/>
 
     return (
         <nav className="Pagination Center-alignment">

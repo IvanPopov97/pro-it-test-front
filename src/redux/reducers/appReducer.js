@@ -42,7 +42,7 @@ const initialState = {
         },
         {
             id: 4,
-            name: null,
+            //name: null,
             component: AddCompanyForm,
             link: '/add/companyList',
             showCreateButton: false,
@@ -50,7 +50,7 @@ const initialState = {
         },
         {
             id: 5,
-            name: null,
+            //name: null,
             component: AddEmployeeForm,
             link: '/add/employeeList',
             showCreateButton: false,

@@ -29,8 +29,10 @@ const List = ({actionCreator, TableComponent}) => {
             <Switch>
                 <Route path={`${path}/:pageNumber?`} render={render}/>
             </Switch>
-            <TableComponent/>
-            <Pagination path={path}/>
+            <div className="container px-3">
+                <TableComponent/>
+                <Pagination path={path}/>
+            </div>
         </Fragment>
     )
 }

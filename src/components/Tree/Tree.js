@@ -29,7 +29,8 @@ const Tree = ({ actionCreator, treeNodeComponent }) => {
                                            recordId={id}
                                            item={tree.items[id]}
                                            actionCreator={actionCreator}
-                                           tree={tree}/>
+                                           tree={tree}
+                                />
                             )
                         }
                     )

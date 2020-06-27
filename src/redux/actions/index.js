@@ -10,7 +10,7 @@ export const createAction = (type, payload) => ({
     payload
 })
 
-export const createGetRequest = (urlString, params = null) => {
+export const createGetRequest = (urlString, params) => {
     if (!params)
         return SERVER + urlString
     const url = new URL(SERVER + urlString)

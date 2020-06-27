@@ -20,7 +20,7 @@ const Content = () => {
                 )
             }
             {
-                mainLink ? <Redirect to={mainLink}/> : null
+                mainLink && <Redirect to={mainLink}/>
             }
         </Switch>
     )

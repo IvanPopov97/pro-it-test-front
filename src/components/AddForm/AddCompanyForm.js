@@ -5,50 +5,55 @@ import Input from "./Input";
 import Select from "./Select";
 import {useDispatch, useSelector} from "react-redux";
 import {companyActionCreator} from "../../redux/actions/CompanyActionCreator";
+import {required} from "./index";
+import SubmitButton from "./SubmitButton";
 
-const mapValuesToDto = values => ({
-    name: values.name,
-    headCompany: values.headCompany ? {id: Number(values.headCompany)} : null
-})
-
-const required = values => {
+const mapValuesToDto = values => {
+    const headCompanyId = values.headCompany ? Number(values.headCompany) : null
     return (
-        (values && values.trim().length > 0)
-            ? undefined
-            : 'Обязательно укажите название компании'
+        {
+            name: values.name,
+            headCompany: headCompanyId ? {id: headCompanyId} : null
+        }
     )
 }
 
+const nameRequired = values => required(values, 'Обязательно укажите название компании')
+
 const AddCompanyForm = ({ handleSubmit, reset, submitting }) => {
-    const submit = values => {
-        console.log(values)
-        dispatch(companyActionCreator.addItem(mapValuesToDto(values)))
-        reset()
-    }
 
     const dispatch = useDispatch()
+
     useEffect(() => {
+        //dispatch(companyActionCreator.createEmptyNameList())
         dispatch(companyActionCreator.fetchNames())
     }, [dispatch])
 
-    const items = useSelector(state => state.selectControl.items)
+    const submit = values => {
+        //console.log(values)
+        dispatch(companyActionCreator.addName(mapValuesToDto(values)))
+        reset()
+    }
+
+    const itemContainer = useSelector(state => state.selectControl[companyActionCreator.modelName])
+        || {items: []}
 
     return (
         <form onSubmit={ handleSubmit(submit) }>
-            <div className='row justify-content-end'>
-                <button type="submit" disabled={submitting} className='Create-button Margin-right'>Сохранить</button>
-            </div>
+            <SubmitButton submitting={submitting}/>
             <Field
-                name="name"
-                placeholder="Название компании"
-                type="text"
-                validate={required}
+                name='name'
+                placeholder='Название компании'
+                type='text'
+                validate={nameRequired}
                 component={Input}
             />
             <Field
-                name="headCompany"
-                items={items}
+                name='headCompany'
+                label='Головная компания'
+                //onChange={(event, value) => console.log(value)}
                 component={Select}
+                items = {itemContainer.items}
             />
         </form>
     )

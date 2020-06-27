@@ -4,9 +4,9 @@ import TableRow from "./TableRow";
 import '../../componentStyles/Table.css'
 
 const Table = ({columnNames, objects, mapObjectToValues}) => {
-    if (!objects)
-        return null
-    return (
+    // if (!objects)
+    //     return null
+    return objects && (
         <table className="Flex-table">
             <TableHead columnNames={columnNames}/>
             <tbody>

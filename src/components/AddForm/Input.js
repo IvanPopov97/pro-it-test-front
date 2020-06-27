@@ -2,7 +2,7 @@
 import React, {Fragment} from "react";
 import ErrorMessage from "./ErrorMessage";
 
-const Input = ({input, type="text", placeholder="Название", meta: { touched, error }}) => {
+const Input = ({ input, type="text", placeholder="Название", meta: { touched, error } }) => {
 
     return (
         <Fragment>
