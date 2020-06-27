@@ -8,7 +8,9 @@ const columnNames = ['ID', 'Название компании', 'Количес�
 
 const mapCompanyToValueArray = company => (
     Object.values({
-        ...company,
+        id: company.id,
+        name: company.name,
+        employeeCount: company.employeeCount,
         headCompany: company.headCompany ? company.headCompany.name : null
     })
 )

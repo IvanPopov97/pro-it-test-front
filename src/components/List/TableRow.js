@@ -1,6 +1,7 @@
 import React from "react";
 
 const TableRow = ({columnNames, values}) => {
+    //console.log(values)
     return (
         <tr>
             {

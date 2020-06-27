@@ -1,4 +1,4 @@
-import {calcOffset, fetchAndDispatch, postAndDispatch} from "./index";
+import {calcOffset, fetchAndDispatch, postAndDispatch, postRequest} from "./index";
 import {hidePagination, setItemCount} from "./paginationActions";
 import {setListItems} from "./listActions";
 import {setChildItems, setRootItems, switchNodeState} from "./treeActions";
@@ -64,11 +64,14 @@ export class ActionCreator {
         )
     }
 
-    addName(item) {
-        return postAndDispatch(this.requestPath, item, id => addSelectControlItem(
-            this.modelName,
-            {id, name: item.name}
-            )
+    addName(item, dispatch = true) {
+        const mapResponseToAction = dispatch && (
+            id => addSelectControlItem(this.modelName, {id, name: item.name})
         )
+        //console.log(item)
+        //console.log(mapResponseToAction)
+        return mapResponseToAction
+            ? postAndDispatch(this.requestPath, item, mapResponseToAction)
+            : postRequest(this.requestPath, item)
     }
 }

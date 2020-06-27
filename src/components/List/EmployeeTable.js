@@ -7,7 +7,8 @@ import {employeeActionCreator} from "../../redux/actions/EmployeeActionCreator";
 const columnNames = ['ID', 'Имя сотрудника', 'Организация', 'Руководитель']
 
 const mapEmployeeToValueArray = employee => Object.values({
-    ...employee,
+    id: employee.id,
+    name: employee.name,
     company: employee.company ? employee.company.name : null,
     boss: employee.boss ? employee.boss.name : null
 })

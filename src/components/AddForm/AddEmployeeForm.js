@@ -23,7 +23,7 @@ const mapValuesToDto = values => {
 
 const nameRequired = values => required(values, 'Обязательно укажите имя сотрудника')
 
-const AddEmployeeForm = ({ handleSubmit, reset, submitting }) => {
+const AddEmployeeForm = ({ handleSubmit, reset, pristine, submitting }) => {
 
     const dispatch = useDispatch()
 
@@ -35,15 +35,25 @@ const AddEmployeeForm = ({ handleSubmit, reset, submitting }) => {
             dispatch(employeeActionCreator.createEmptyNameList())
     }
 
+    // useEffect(() => {
+    //     window.addEventListener('unhandledRejection', afterSubmit);
+    //     return () => {
+    //         window.removeEventListener('unhandledRejection', afterSubmit);
+    //     }
+    // }, [])
+
     useEffect(() => {
-        //dispatch(employeeActionCreator.createEmptyNameList())
+        //console.log(pristine)
+        if (pristine)
+            dispatch(employeeActionCreator.createEmptyNameList())
+    }, [dispatch, pristine])
+
+    useEffect(() => {
         dispatch(companyActionCreator.fetchNames())
     }, [dispatch])
 
     const submit = values => {
-        console.log(values)
-        console.log(mapValuesToDto(values))
-        //employeeActionCreator.addName(mapValuesToDto(values))
+        employeeActionCreator.addName(mapValuesToDto(values), false)
         reset()
     }
 

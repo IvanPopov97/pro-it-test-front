@@ -36,25 +36,37 @@ export const fetchAndDispatch = (url,
     }
 }
 
+// export const post = (url, object) => {
+//     //console.log(object)
+//     return async () => {
+//         console.log('???')
+//         return await postRequest(url, object).catch(() => {
+//             console.log('Не удалось отправить данные')
+//         })
+//     }
+// }
+
 export const postAndDispatch = (url,
                                 object,
                                 mapResponseToAction,
                                 actionBeforePost) => {
+    //console.log(object)
     return async dispatch => {
         if (actionBeforePost)
             dispatch(actionBeforePost)
+        //console.log('!!!')
         const response = await postRequest(url, object).catch(() => {console.log('Не удалось отправить данные')})
         //console.log(response)
         if (response && response.ok) {
             const json = await response.json()
-            if (json)
+            if (json && mapResponseToAction)
                 dispatch(mapResponseToAction(json))
         }
     }
 }
 
 export const postRequest = (url, object) => {
-    console.log(url)
+    //console.log(url)
     return fetch(SERVER + url, {
         method: 'POST',
         headers: headers,
